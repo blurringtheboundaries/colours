@@ -4,7 +4,9 @@
   "description": "Colour project with Joel Daze",
   "main": "colours.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "author": "Charles Matthews",
   "license": "ISC",
