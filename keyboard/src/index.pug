@@ -1,0 +1,20 @@
+#keyboard
+
+#menus
+    #menu_selection
+        span.optionSpan
+            label(for="colourToggle") Colour preset:
+            select#templateMenu(aria-label='Colour template')
+                option(value="newton_12") Newton
+                option(value="daze") Daze
+                option(value='purples') Purples
+        span.optionSpan
+            label(for="colourWell") Choose colour:
+            input#colourWell(type="color")
+
+        span.optionSpan
+            label(for="colourToggle") Set colour:
+            input#colourToggle(type="checkbox")
+        
+    #presetIcons
+    include presetIconTemplates

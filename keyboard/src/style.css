@@ -1,0 +1,76 @@
+body {
+    font-family: Lucida Grande, Lucida Sans Unicode;
+}
+
+.optionSpan{
+    background-color:white;
+    margin:0.5em;
+    padding:0.5em;
+    border-radius:2px;
+}
+
+.keyboard{
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    margin:auto;
+    position:absolute;
+    display:block;
+/*     width:422px; */
+/*     width:210px; */
+    height:130px;
+/*     background-color:red; */
+    border-style:solid;
+    border-width:10px;
+}
+
+.disp{
+    opacity:0.1;
+}
+
+.visual{
+    opacity:1;
+    transition:background-color 0.2s;
+}
+
+body{
+    background-color:grey;
+}
+
+.pianoNote{
+    transition:background-color 1s ease;
+}
+
+.wedges{
+    display:inline-block;
+    width:100px;
+    height:100px;
+}
+
+.colourIconCircle{
+    transition all 0.5s ease;
+}
+
+#presetIcons{
+    display:inline;
+    text-align:center;
+    width:100%;
+}
+
+#menus{
+    background-color:darkgrey;
+    border-radius:2px;
+    padding:0.5em;
+
+}
+
+#menu_selection{
+    padding: 10px 0;
+}
+
+.colourIcon{
+    transform-origin:50% 50%;
+    transition: transform 1s ease;
+}
+
