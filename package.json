@@ -1,0 +1,18 @@
+{
+  "name": "colours",
+  "version": "1.0.0",
+  "description": "Colour project with Joel Daze",
+  "main": "colours.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charles Matthews",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "jsdoc": "^3.6.10",
+    "pug": "^3.0.2"
+  }
+}
