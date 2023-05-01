@@ -1,2 +1,2 @@
 # colours
-Collaboration with Joel Daze
+Collaboration with Joel Dazé
