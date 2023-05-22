@@ -4,7 +4,6 @@ const sourceFolder = 'keyboard/src';
 const buildFolder = 'keyboard/build';
 const beautify = require('js-beautify').html;
 
-
 // Quickly testing pug rendering...
 let html = pug.render(fs.readFileSync(`${sourceFolder}/index.pug`, "utf-8"), {filename: `${sourceFolder}/index.pug`});
 html = beautify(html);
