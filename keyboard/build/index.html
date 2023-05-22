@@ -1,56 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Colour</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src='https://cdn.jsdelivr.net/gh/matthewscharles/cm-tools@latest/build/cm-tools.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js'></script>
-    <script src="./pitch_colour.js"></script>
-</head>
-
-<body onload="loader()">
-    <div id="keyboard"></div>
-    <div id="menus">
-        <div id="menu_selection"><span class="optionSpan"><label for="colourToggle">Colour preset:</label><select id="templateMenu" aria-label="Colour template">
-                    <option value="newton_12">Newton</option>
-                    <option value="daze">Daze</option>
-                    <option value="purples">Purples</option>
-                </select></span><span class="optionSpan"><label for="colourWell">Choose colour:</label><input id="colourWell" type="color" /></span><span class="optionSpan"><label for="colourToggle">Set colour:</label><input id="colourToggle" type="checkbox" /></span></div>
-        <div id="presetIcons"></div>
-        <div id="presetIconTemplates"><svg id="preset_template_8" viewbox="0 0 120 120" width="100" style="display:none;">
-                <g class="sectors">
-                    <path class="wedge span8" id="test_sector_0" d="M 60 0 A 60 60 0 0 1 102 18 L 60 60 L 60 0 Z"></path>
-                </g>
-                <g class="over">
-                    <circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle>
-                </g>
-            </svg><svg id="preset_template_5" viewbox="0 0 120 120" width="100" style="display:none;">
-                <g class="sectors">
-                    <path class="wedge span5" id="test_sector_0" d="M 60 0 A 60 60 0 0 1 117 41 L 60 60 L 60 0 Z"></path>
-                </g>
-                <g class="over">
-                    <circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle>
-                </g>
-            </svg><svg id="preset_template_12" viewbox="0 0 120 120" width="100" style="display:none;">
-                <g class="backdrop"></g>
-                <g class="sectors">
-                    <path class="wedge span12" id="test_sector_0" d="M 60 0 A 60 60 0 0 1 90 8 L 60 60 L 60 0 Z"></path>
-                </g>
-                <g class="over">
-                    <circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle>
-                </g>
-            </svg><svg id="preset_template" viewbox="0 0 120 120" width="100" style="display:none;">
-                <g class="backdrop">
-                    <circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle>
-                </g>
-                <g class="sectors"></g>
-                <g class="over">
-                    <circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle>
-                </g>
-            </svg></div>
-    </div>
-    <div id="colour_palette"></div>
-</body>
-<script></script>
+< !DOCTYPE html >
+    <
+    html lang = "en" >
+    <
+    head >
+    <
+    meta charset = "UTF-8" >
+    <
+    title > Colour < /title> <
+    link rel = "stylesheet"
+href = "./style.css" >
+    <
+    script src = 'https://cdn.jsdelivr.net/gh/matthewscharles/cm-tools@latest/build/cm-tools.js' > < /script> <
+    script src = 'https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js' > < /script> <
+    script src = "./pitch_colour.js" > < /script> <
+    /head><body onload="loader()"><div id="keyboard"></div > < div id = "menus" > < div id = "menu_selection" > < span class = "optionSpan" > < label
+for = "colourToggle" > Colour preset: < /label><select id="templateMenu" aria-label="Colour template"><option value="newton_12">Newton</option > < option value = "daze" > Daze < /option><option value="purples">Purples</option > < /select></span > < span class = "optionSpan" > < label
+for = "colourWell" > Choose colour: < /label><input id="colourWell" type="color"/ > < /span><span class="optionSpan"><label for="colourToggle">Set colour:</label > < input id = "colourToggle"
+type = "checkbox" / > < /span></div > < div id = "presetIcons" > < /div><div id="presetIconTemplates"><svg id="preset_template_8" viewbox="0 0 120 120" width="100" style="display:none;"><g class="sectors"><path class="wedge span8" id="test_sector_0" d="M 60 0 A 60 60 0 0 1 102 18 L 60 60 L 60 0 Z"></path > < /g><g class="over"><circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle > < /g></svg > < svg id = "preset_template_5"
+viewbox = "0 0 120 120"
+width = "100"
+style = "display:none;" > < g class = "sectors" > < path class = "wedge span5"
+id = "test_sector_0"
+d = "M 60 0 A 60 60 0 0 1 117 41 L 60 60 L 60 0 Z" > < /path></g > < g class = "over" > < circle class = "colourIconCircle"
+cx = "60"
+cy = "60"
+r = "58"
+stroke = "black"
+fill = "none"
+stroke - width = "4px" > < /circle></g > < /svg><svg id="preset_template_12" viewbox="0 0 120 120" width="100" style="display:none;"><g class="backdrop"></g > < g class = "sectors" > < path class = "wedge span12"
+id = "test_sector_0"
+d = "M 60 0 A 60 60 0 0 1 90 8 L 60 60 L 60 0 Z" > < /path></g > < g class = "over" > < circle class = "colourIconCircle"
+cx = "60"
+cy = "60"
+r = "58"
+stroke = "black"
+fill = "none"
+stroke - width = "4px" > < /circle></g > < /svg><svg id="preset_template" viewbox="0 0 120 120" width="100" style="display:none;"><g class="backdrop"><circle class="colourIconCircle" cx="60" cy="60" r="58" stroke="black" fill="none" stroke-width="4px"></circle > < /g><g class="sectors"></g > < g class = "over" > < circle class = "colourIconCircle"
+cx = "60"
+cy = "60"
+r = "58"
+stroke = "black"
+fill = "none"
+stroke - width = "4px" > < /circle></g > < /svg></div > < /div><div id="colour_palette"></div > < /body><script></script >

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Colour project with Joel Daze",
   "main": "colours.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel keyboard/src -o keyboard/build/pitch_colour.js; node compile.js; jsdoc -c jsdoc.json",
@@ -18,6 +19,7 @@
     "fs-extra": "^10.1.0",
     "js-beautify": "^1.14.4",
     "jsdoc": "^3.6.10",
+    "midi-mapper": "^1.0.14",
     "pug": "^3.0.2",
     "webpack": "^5.83.1",
     "webpack-cli": "^5.1.1"
