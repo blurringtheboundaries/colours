@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel keyboard/src -o keyboard/build/pitch_colour.js; node compile.js; jsdoc -c jsdoc.json",
+    "build": "npm link @matthewscharles/socket-mapper && webpack ./test_src/test.js -o ./test && babel keyboard/src -o keyboard/build/pitch_colour.js; node compile.js; jsdoc -c jsdoc.json",
     "doc": "jsdoc -c jsdoc.json"
   },
   "author": "Charles Matthews",
