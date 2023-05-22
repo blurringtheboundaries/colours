@@ -1,5 +1,6 @@
 body {
     font-family: Lucida Grande, Lucida Sans Unicode;
+    background-color:grey;
 }
 
 .optionSpan{
@@ -34,9 +35,6 @@ body {
     transition:background-color 0.2s;
 }
 
-body{
-    background-color:grey;
-}
 
 .pianoNote{
     transition:background-color 1s ease;
@@ -46,6 +44,11 @@ body{
     display:inline-block;
     width:100px;
     height:100px;
+}
+
+.wedge{
+    transform-origin:center center;
+    transition: all 1s ease;
 }
 
 .colourIconCircle{

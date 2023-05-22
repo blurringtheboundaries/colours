@@ -1,0 +1,14 @@
+#N canvas 0 25 450 300 12;
+#X obj 25 25 bng 200 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;#X obj 200 100 cnv 15 50 50 empty wheel0 empty 20 12 0 14 -8323328 -262144 0;
+#X obj 186 150 cnv 15 50 50 empty wheel1 empty 20 12 0 14 -32768 -262144 0;
+#X obj 150 186 cnv 15 50 50 empty wheel2 empty 20 12 0 14 -256 -262144 0;
+#X obj 100 200 cnv 15 50 50 empty wheel3 empty 20 12 0 14 -65536 -262144 0;
+#X obj 50 186 cnv 15 50 50 empty wheel4 empty 20 12 0 14 -65281 -262144 0;
+#X obj 13 150 cnv 15 50 50 empty wheel5 empty 20 12 0 14 -8388353 -262144 0;
+#X obj 0 100 cnv 15 50 50 empty wheel6 empty 20 12 0 14 -16776961 -262144 0;
+#X obj 13 50 cnv 15 50 50 empty wheel7 empty 20 12 0 14 -16760577 -262144 0;
+#X obj 49 13 cnv 15 50 50 empty wheel8 empty 20 12 0 14 -16744193 -262144 0;
+#X obj 99 0 cnv 15 50 50 empty wheel9 empty 20 12 0 14 -16727809 -262144 0;
+#X obj 150 13 cnv 15 50 50 empty wheel10 empty 20 12 0 14 -16711681 -262144 0;
+#X obj 186 49 cnv 15 50 50 empty wheel11 empty 20 12 0 14 -16711808 -262144 0;

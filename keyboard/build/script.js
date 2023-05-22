@@ -1,3 +1,6 @@
+var test, colourToggle;
+
+
 /**
  * Official CSS colours with hex codes
  */
@@ -221,7 +224,7 @@ const toggles = {
     noteColour: true
 };
 
-const colourToggle = document.getElementById("colourToggle");
+
 
 const setLabelText = function (note, i) {
     let labelText = "";
@@ -235,6 +238,12 @@ const setLabelText = function (note, i) {
 };
 
 let colourSelection = "newton_12";
+
+/**
+ * Check if a MIDI note number is a black key
+ * @param {number} x MIDI note number
+ * @returns {boolean}
+ */
 
 const isBlackKey = (x) => [1, 3, 6, 8, 10].includes(x % 12);
 
@@ -359,7 +368,9 @@ let presetArray = [];
 const setPresetIcons = function () {
     document.getElementById("presetIcons").innerHTML = "";
     Object.keys(noteColours).forEach((item, i) => {
+        console.log('item',item)
         let testIcon = new WedgeIcon(`preset_${i}`, "preset_template", item);
+        testIcon.element.dataset.name = item;
         testIcon.element.onclick = function () {
             document.getElementById("templateMenu").value = item;
             document.getElementById("templateMenu").oninput();
@@ -372,7 +383,7 @@ const setPresetIcons = function () {
     });
 };
 
-setPresetIcons();
+
 
 /**
  * Basic synth for testing purposes..
@@ -547,8 +558,8 @@ Keyboard.prototype.elementSetup = function () {
     });
 };
 
-let test = new Keyboard("keyboard", 12);
-document.body.appendChild(test.element);
+
+
 
 // TODO: add octave shift button
 
@@ -559,21 +570,27 @@ const playKey = function (e) {
     }
 };
 
-window.addEventListener("keydown", playKey);
 
-/**
- * Check if a MIDI note number is a black key
- * @param {number} x MIDI note number
- * @returns {boolean}
- */
 
-document.getElementById("templateMenu").oninput = function () {
-    test.setColours(this.value);
 
-};
 
-// document.getElementById('colourSetter').onclick = setCurrentColour;
-document.getElementById("colourToggle").oninput = function () {
-    console.log(this.checked);
-};
-document.getElementById("colourWell").oninput = setNewColour;
+const loader = function(){
+    colourToggle = document.getElementById("colourToggle");
+    test = new Keyboard("keyboard", 12);
+    document.body.appendChild(test.element);
+    document.getElementById("templateMenu").oninput = function () {
+        test.setColours(this.value);
+        console.log('new id',document.querySelector(`.colourIcon[data-name*="${this.value}"]`).id)
+        setColourIcons(document.querySelector(`.colourIcon[data-name*="${this.value}"]`).id)
+        
+    };
+    
+    // document.getElementById('colourSetter').onclick = setCurrentColour;
+    document.getElementById("colourToggle").oninput = function () {
+        console.log(this.checked);
+    };
+    document.getElementById("colourWell").oninput = setNewColour;
+
+    window.addEventListener("keydown", playKey);
+    setPresetIcons();
+}

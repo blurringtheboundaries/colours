@@ -1,0 +1,7 @@
+#N canvas 0 25 450 300 12;
+#X obj 59 64 cnv 15 50 50 empty wheel0 empty 20 12 0 14 -258081 -262144
+0;
+#X obj 110 87 cnv 15 50 50 empty wheel1 empty 20 12 0 14 -180611 -262144
+0;
+#X obj 161 110 cnv 15 50 50 empty wheel2 empty 20 12 0 14 -180611 -262144
+0;
