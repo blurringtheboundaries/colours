@@ -1,6 +1,7 @@
 import MidiMapper from 'midi-mapper';
 import SocketMapper from '@matthewscharles/socket-mapper';
 import {dmxWrite} from './dmx.js';
+import { noteColours, COLOURS } from '../src/synth_colours.js';
 
 window.MidiMapper = MidiMapper;
 window.app = {

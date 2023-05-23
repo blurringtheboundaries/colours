@@ -3,3 +3,23 @@ body{
     color: #fff;
     font-family:'Courier New', Courier, monospace;
 }
+
+.bars{
+    height: 100%;
+    width: 100%;
+    margin:none;
+    display:block;
+    background-color:blue;
+    position:absolute;
+    top:0;
+    left:0;
+    
+}
+
+.bar{
+    height: 12fr;
+    width: 100%;
+    margin:none;
+    display:block;
+    background-color:red;
+}
