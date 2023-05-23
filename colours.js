@@ -1,5 +1,8 @@
+// Some colours from JD's system
+
 /*
 Colour	            Note
+
 deep red	        F
 red	                C
 orange	            G
