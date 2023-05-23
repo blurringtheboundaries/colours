@@ -1,5 +1,7 @@
 import MidiMapper from 'midi-mapper';
 import SocketMapper from '@matthewscharles/socket-mapper';
+import {dmxWrite} from './dmx.js';
+
 window.MidiMapper = MidiMapper;
 window.app = {
     midi: new MidiMapper(),
