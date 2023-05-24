@@ -4,15 +4,17 @@ import {dmxWrite} from './dmx.js';
 import { noteColours, COLOURS } from '../src/synth_colours.js';
 
 window.MidiMapper = MidiMapper;
-window.app = {
+window.colours = {
     midi: new MidiMapper(),
     socket: new SocketMapper()
 }
 
-app.midi.map[0].noteRange['0,127'] = function(pitch, velocity){
+let {midi, socket} = colours;
+
+midi.map[0].noteRange['0,127'] = function(pitch, velocity){
     console.log(pitch, velocity);
 };
-app.midi.listen();
+midi.listen();
 
 /**
  * light cycle test
