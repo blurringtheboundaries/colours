@@ -42,3 +42,14 @@ function testCycle(){
     }, 30);
 }
 
+function initSocket(){
+    let synth = new Tone.PolySynth().toMaster();
+    Tone.start();
+    console.log('init')
+    colours.socket.listen();
+    colours.socket.in.note = (e)=>{
+        let [channel, pitch, velocity] = e;
+        synth[e[2] ? 'triggerAttack' : 'triggerRelease'](Tone.Frequency(pitch, 'midi').toNote(), undefined, velocity/127);
+    }   //- colours.socket.listen();
+}
+document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
