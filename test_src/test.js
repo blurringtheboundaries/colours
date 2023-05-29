@@ -10,6 +10,8 @@ window.colours = {
     socket: new SocketMapper()
 }
 
+window.serialMapper = new SerialMapper();
+
 let {midi, socket} = colours;
 
 midi.map[0].noteRange['0,127'] = function(pitch, velocity){
