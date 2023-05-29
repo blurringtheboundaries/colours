@@ -9,11 +9,18 @@ const sourceFolder = 'test_src/pug';
 const buildFolder = 'test';
 
 // Quickly testing pug rendering...
-let html = pug.render(fs.readFileSync(`${sourceFolder}/index.pug`, "utf-8"), {filename: `${sourceFolder}/index.pug`});
-html = beautify(html);
-fs.writeFileSync(`${buildFolder}/index.html`, html, "utf-8");
-// fs.copyFileSync(`${sourceFolder}/script.js`, `${buildFolder}/script.js`); 
+
+let files = ['index','midi']
+files.forEach(x=>{
+    let html = pug.render(fs.readFileSync(`${sourceFolder}/${x}.pug`, "utf-8"), {filename: `${sourceFolder}/${x}.pug`});
+    html = beautify(html);
+    fs.writeFileSync(`${buildFolder}/${x}.html`, html, "utf-8");
+    // fs.copyFileSync(`${sourceFolder}/script.js`, `${buildFolder}/script.js`); 
+   
+})
+
 fs.copyFileSync(`${sourceFolder}/style.css`, `${buildFolder}/style.css`);
+
 console.log('\u001b[' + 41 + 'm' + 'done' + '\u001b[0m')
 
 // console.log( "\u001b[1;31m Red message" );

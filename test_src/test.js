@@ -18,7 +18,8 @@ window.start = function start(){
     let {midi, socket} = colours;
 
     midi.map[0].noteRange['0,127'] = function(pitch, velocity){
-        console.log(pitch, velocity);
+        console.log('test', pitch, velocity);
+        socket.emitNote(0, pitch, velocity);
     };
     midi.listen();
 }
