@@ -7,17 +7,22 @@ import { noteColours, COLOURS } from '../src/synth_colours.js';
 window.MidiMapper = MidiMapper;
 window.colours = {
     midi: new MidiMapper(),
-    socket: new SocketMapper()
+    socket: new SocketMapper(),
+    serial: new SerialMapper()  
 }
 
-window.serialMapper = new SerialMapper();
+console.log('test.js loaded');
 
-let {midi, socket} = colours;
 
-midi.map[0].noteRange['0,127'] = function(pitch, velocity){
-    console.log(pitch, velocity);
-};
-midi.listen();
+window.start = function start(){
+    let {midi, socket} = colours;
+
+    midi.map[0].noteRange['0,127'] = function(pitch, velocity){
+        console.log(pitch, velocity);
+    };
+    midi.listen();
+}
+
 
 /**
  * light cycle test
