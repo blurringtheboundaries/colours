@@ -65,8 +65,15 @@ export default class VoiceManager{
                 voice.off();
             }
         }
-        
+        return {
+            number: this.voices.indexOf(voice),
+            data: voice
+        }
     }
 
+    steal(pitch, velocity){
+        let voice = this.voices.find(v=>!v.active);
+        voice.on(pitch, velocity);
+    }
 
 }
