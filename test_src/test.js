@@ -10,7 +10,8 @@ window.colours = {
     midi: new MidiMapper(),
     socket: new SocketMapper(),
     arduino: new SerialMapper(),
-    voices: new VoiceManager(4)  
+    voices: new VoiceManager(4),
+    initFlag: false
 }
 
 window.noteColours = noteColours;
@@ -60,8 +61,12 @@ function initSocket(){
 }
 
 function initDMX(){
-    let {arduino} = colours;
+    let {arduino, socket} = colours;
     arduino.connect();
+    socket.in.note = (e)=>{
+        if(e[2])writeNoteColour(e[1]%12);
+    }
+    socket.listen();
 }
 
 document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
@@ -79,6 +84,25 @@ function getColour(array, index){
     return output;
 }
 
-window.getColour = getColour;
+function formatColour(array){
+    return array.map((x,i)=>`${i+2} ${x}`).join(' ') + `\n`;
+}
+
+function writeNoteColour(note = 0){
+    let {arduino, initFlag} = colours;
+    if(!initFlag){
+        arduino.writer.write('1 255\n');
+        initFlag = true;
+    }
+
+    let colour = getColour(noteColours.daze.led, note);
+    arduino.writer.write(formatColour(colour));
+}
+
+Object.assign(window,{
+    getColour, formatColour, writeNoteColour
+})
+
+
 
 console.log(noteColours.daze.led);
