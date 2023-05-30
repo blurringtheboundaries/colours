@@ -13,6 +13,8 @@ window.colours = {
     voices: new VoiceManager(4)  
 }
 
+window.noteColours = noteColours;
+
 console.log('test.js loaded');
 
 
@@ -57,4 +59,26 @@ function initSocket(){
     } 
 }
 
+function initDMX(){
+    let {arduino} = colours;
+    arduino.connect();
+}
+
 document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
+document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
+
+function getColour(array, index){
+    let output = array[index];
+    if(output[0] == '#'){
+        output = output.slice(1);
+    }
+    if(output.length == 3){
+        output = output.split('').map(x=>x+x).join('');
+    }
+    output = output.match(/.{2}/g).map(x=>parseInt(x, 16));
+    return output;
+}
+
+window.getColour = getColour;
+
+console.log(noteColours.daze.led);
