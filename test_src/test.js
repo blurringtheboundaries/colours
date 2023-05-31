@@ -75,7 +75,7 @@ function initDMX(){
         console.log(voiceArray.map(v=>v.pitch));
         voiceArray.forEach((v,i)=>{
             // todo: check if pitch has changed to save on writes
-          writeNoteColour(v.pitch, i)
+          writeNoteColour(v.pitch % 12, i)
         });
         // if(e[2])writeNoteColour(e[1]%12);
         
@@ -85,6 +85,15 @@ function initDMX(){
 
 document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
 document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
+
+let colourBuffer = [];
+
+/**
+ * 
+ * @param {*} array 
+ * @param {*} index 
+ * @returns {Array} [r,g,b]
+ */
 
 function getColour(array, index){
     let output = array[index];
@@ -111,12 +120,13 @@ function writeNoteColour(note = 0, offset = 0){
     }
     let colour;
     if(note == -1){
-        colour = "#000000";
+        colour = [0,0,0];
     } else {
         colour = getColour(noteColours.daze.led, note);
-    }
     
-    arduino.writer.write(formatColour(colour, offset));
+    }
+    console.log(colour)
+    arduino.writer.write(formatColour(colour, offset * 6));
 }
 
 Object.assign(window,{
