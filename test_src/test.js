@@ -18,15 +18,15 @@ window.colours = {
     polyphony: 4,
     lights:{
         1:[0,0,0],
-        2:[0,0,0],
-        3:[0,0,0],
-        4:[0,0,0]
+        11:[0,0,0],
+        22:[0,0,0],
+        33:[0,0,0]
     }, 
     lights_last:{
         1:[0,0,0],
-        2:[0,0,0],
-        3:[0,0,0],
-        4:[0,0,0]
+        11:[0,0,0],
+        22:[0,0,0],
+        33:[0,0,0]
     },
     queue: [],
 }
@@ -73,12 +73,12 @@ function getColour(array, index){
 }
 
 function formatColour(array, offset = 0){
-    offset += 1;
+    offset = parseInt(offset)+1;
     return array.map((x,i)=>`${i+offset}:${x}`).join('\n') + `\n${offset - 1}:255\n`;
 }
 
 function writeNoteColour(note = 0, offset = 0){
-    let {arduino, initFlag} = colours;
+    let {arduino, initFlag, lights} = colours;
     let colour;
     if(note == -1){
         colour = [0,0,0];
@@ -88,7 +88,7 @@ function writeNoteColour(note = 0, offset = 0){
     }
     console.log('colour',offset, colour);
 
-    colours.lights[offset+1] = colour;
+    colours.lights[Object.keys(lights)[offset]] = colour;
     processAll();
  }
 
