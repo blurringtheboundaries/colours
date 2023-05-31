@@ -67,10 +67,14 @@ function initSocket(){
 }
 
 function initDMX(){
-    let {arduino, socket} = colours;
+    let {arduino, socket, voices} = colours;
     arduino.connect();
     socket.in.note = (e)=>{
+        let [channel, pitch, velocity] = e;
+        let voiceArray = voices.update(pitch, velocity, true);
+        console.log(voiceArray.map(v=>v.pitch));
         if(e[2])writeNoteColour(e[1]%12);
+        
     }
     socket.listen();
 }
@@ -90,19 +94,20 @@ function getColour(array, index){
     return output;
 }
 
-function formatColour(array){
-    return array.map((x,i)=>`${i+2} ${x}`).join(' ') + `\n`;
+function formatColour(array, offset = 0){
+    offset += 2;
+    return array.map((x,i)=>`${i+offset} ${x}`).join(' ') + `\n`;
 }
 
-function writeNoteColour(note = 0){
+function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag} = colours;
     if(!initFlag){
-        arduino.writer.write('1 255\n');
+        arduino.writer.write(`${1 + offset} 255\n`);
         initFlag = true;
     }
 
     let colour = getColour(noteColours.daze.led, note);
-    arduino.writer.write(formatColour(colour));
+    arduino.writer.write(formatColour(colour, offset));
 }
 
 Object.assign(window,{
