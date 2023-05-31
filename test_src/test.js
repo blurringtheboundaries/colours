@@ -20,13 +20,15 @@ console.log('test.js loaded');
 
 
 window.start = function start(){
-    let {midi, socket} = colours;
-
+    let {midi, socket, voices} = colours;
+    let id = Math.random().toString(36).slice(2);
     midi.map[0].noteRange['0,127'] = function(pitch, velocity){
-        console.log('test', pitch, velocity);
+        console.log('test', id, pitch, velocity);
+        console.log(voices.update(pitch, velocity));
         socket.emitNote(0, pitch, velocity);
     };
     midi.listen();
+    
 }
 
 
