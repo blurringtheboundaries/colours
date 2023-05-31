@@ -73,7 +73,11 @@ function initDMX(){
         let [channel, pitch, velocity] = e;
         let voiceArray = voices.update(pitch, velocity, true);
         console.log(voiceArray.map(v=>v.pitch));
-        if(e[2])writeNoteColour(e[1]%12);
+        voiceArray.forEach((v,i)=>{
+            // todo: check if pitch has changed to save on writes
+          writeNoteColour(v.pitch, i)
+        });
+        // if(e[2])writeNoteColour(e[1]%12);
         
     }
     socket.listen();
@@ -105,8 +109,13 @@ function writeNoteColour(note = 0, offset = 0){
         arduino.writer.write(`${1 + offset} 255\n`);
         initFlag = true;
     }
-
-    let colour = getColour(noteColours.daze.led, note);
+    let colour;
+    if(note == -1){
+        colour = "#000000";
+    } else {
+        colour = getColour(noteColours.daze.led, note);
+    }
+    
     arduino.writer.write(formatColour(colour, offset));
 }
 
