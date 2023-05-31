@@ -7,7 +7,7 @@ function initDMX(){
         // console.log(voiceArray.map(v=>v.pitch));
         voiceArray.forEach((v,i)=>{
             // todo: check if pitch has changed to save on writes
-          writeNoteColour(v.pitch % 12, i)
+          writeNoteColour(v.pitch % 12, i);
         });
         document.querySelectorAll('.testBar').forEach((x,i)=>{
             x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';

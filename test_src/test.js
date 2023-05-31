@@ -16,11 +16,12 @@ window.colours = {
     initFlag: false,
     polyphony: 4,
     lights:{
+        0:[0,0,0],
         1:[0,0,0],
         2:[0,0,0],
-        3:[0,0,0],
-        4:[0,0,0]
-    }
+        3:[0,0,0]
+    }, 
+    queue: [],
 }
 
 function initSocket(){
@@ -74,7 +75,7 @@ function writeNoteColour(note = 0, offset = 0){
     if(!initFlag){
         for (let i=0; i<colours.polyphony; i++){
 
-            console.log('sending ', 1 + i * 7)
+            console.log('init ', 1 + i * 7)
             arduino.writer.write(`${1 + i * 7} 255\n`);
         }
         colours.initFlag = true;
@@ -86,9 +87,30 @@ function writeNoteColour(note = 0, offset = 0){
         colour = getColour(noteColours.daze.led, note);
     
     }
-    console.log(formatColour(colour, offset * 7).split('\n'));
+    console.log('colour',offset, colour);
+
+    
+    if(colours.lights[offset].join('') == colour.join('')){
+        return;
+    } else {
+        colours.queue.push(formatColour(colour, offset * 6));
+
+    }
+
+    colours.lights[offset] = colour;
+    // console.log(formatColour(colour, offset * 7).split('\n'));
     // todo: try writeQueue in the SerialMapper instance
-    arduino.writer.write(formatColour(colour, offset * 6));
+    // console.log(formatColour(colour, offset * 6));
+    // arduino.writer.write(formatColour(colour, offset * 6));
+}
+
+function processQueue(){
+    let {queue, arduino} = colours;
+    if(queue.length){
+        // arduino.writer.write(queue.shift());
+        arduino.writeQueue(queue);
+        queue = [];
+    }
 }
 
 // go
@@ -96,5 +118,5 @@ function writeNoteColour(note = 0, offset = 0){
 assignButtons();
 
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour, start, noteColours
+    getColour, formatColour, writeNoteColour, start, noteColours, processQueue
 })
