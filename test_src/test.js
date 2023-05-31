@@ -2,8 +2,10 @@ import MidiMapper from 'midi-mapper';
 import SocketMapper from '@matthewscharles/socket-mapper';
 import SerialMapper from 'serial-mapper';
 import { dmxWrite } from './dmx.js';
+import start from './start.js';
 import { noteColours, COLOURS } from '../src/synth_colours.js';
 import VoiceManager from './voice.js';
+import initDMX from './initDmx.js';
 
 window.MidiMapper = MidiMapper;
 window.colours = {
@@ -21,27 +23,6 @@ window.colours = {
     }
 }
 
-window.noteColours = noteColours;
-
-console.log('test.js loaded');
-
-
-window.start = function start(){
-    let {midi, socket, voices} = colours;
-    let id = Math.random().toString(36).slice(2);
-    midi.map[0].noteRange['0,127'] = function(pitch, velocity){
-        let voiceArray = voices.update(pitch, velocity, true);
- 
-        document.querySelectorAll('.testBar').forEach((x,i)=>{
-            x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
-        })
- 
-        socket.emitNote(0, pitch, velocity);
-    };
-    midi.listen();
-    
-}
-
 function initSocket(){
     let {socket} = colours;
     let synth = new Tone.PolySynth().toMaster();
@@ -54,27 +35,15 @@ function initSocket(){
     } 
 }
 
-function initDMX(){
-    let {arduino, socket, voices} = colours;
-    arduino.connect();
-    socket.in.note = (e)=>{
-        let [channel, pitch, velocity] = e;
-        let voiceArray = voices.update(pitch, velocity, true);
-        // console.log(voiceArray.map(v=>v.pitch));
-        voiceArray.forEach((v,i)=>{
-            // todo: check if pitch has changed to save on writes
-          writeNoteColour(v.pitch % 12, i)
-        });
-        // if(e[2])writeNoteColour(e[1]%12);
-        
-    }
-    socket.listen();
+
+
+function assignButtons(){
+    document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
+    document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
+    
 }
 
-document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
-document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
 
-let colourBuffer = [];
 
 /**
  * 
@@ -122,10 +91,10 @@ function writeNoteColour(note = 0, offset = 0){
     arduino.writer.write(formatColour(colour, offset * 6));
 }
 
+// go
+
+assignButtons();
+
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour
+    getColour, formatColour, writeNoteColour, start, noteColours
 })
-
-
-
-console.log(noteColours.daze.led);
