@@ -51,7 +51,7 @@ export default class VoiceManager{
      * @param {*} velocity 
      * @returns {number|boolean} the voice number or false if no voice available
      */
-    update(pitch, velocity){
+    update(pitch, velocity, outputAll = false){
         let activeVoices = this.voices.filter(v=>v.active);
         let voice = this.voices.find(v=>v.pitch == pitch);
         
@@ -76,7 +76,7 @@ export default class VoiceManager{
             //     data: voice
             // }
         
-            return this.voices.indexOf(voice);
+            return outputAll ? this.voices : this.voices.indexOf(voice);
 
         } else {
             // velocity is 0: note off
@@ -86,7 +86,7 @@ export default class VoiceManager{
         }
        
 
-        return false;
+        return outputAll ? this.voices : false;
     }
 
     steal(pitch, velocity){
