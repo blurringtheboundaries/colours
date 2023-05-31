@@ -30,9 +30,10 @@ class Voice{
 
 
 /**
- * Manage voices of synth for colour / sound
+ * Manage voices of synth for colour / sound. Quick and dirty attempt during gig prep.
  * @param {number} numberOfVoices
  * @param {boolean} stealing voice stealing flag
+ * @returns {VoiceManager}
  */
 
 export default class VoiceManager{
@@ -44,36 +45,77 @@ export default class VoiceManager{
         }
     }
 
+    /**
+     * 
+     * @param {*} pitch 
+     * @param {*} velocity 
+     * @returns {number|boolean} the voice number or false if no voice available
+     */
     update(pitch, velocity){
         let activeVoices = this.voices.filter(v=>v.active);
         let voice = this.voices.find(v=>v.pitch == pitch);
+        
         if(velocity){
+            // velocity is greater than 0: note on
             if(voice){
-                voice.on(velocity);
-            }else{
+                voice.on(pitch, velocity);
+            } else {
                 if(activeVoices.length == this.voices.length){
                     if(this.stealing){
-                        this.steal(pitch, velocity);
+                        voice = this.steal(pitch, velocity);
                     }
                 }
                 else{
-                    this.voices[this.voices.length-1].on(velocity);
+                    voice = this.voices.find(v=>!v.active);
+                    voice.on(pitch, velocity);
+                    
                 }
             }
+            // let output = {
+            //     number: this.voices.indexOf(voice),
+            //     data: voice
+            // }
+        
+            return this.voices.indexOf(voice);
+
         } else {
+            // velocity is 0: note off
             if(voice){
                 voice.off();
             }
         }
-        return {
-            number: this.voices.indexOf(voice),
-            data: voice
-        }
+       
+
+        return false;
     }
 
     steal(pitch, velocity){
-        let voice = this.voices.find(v=>!v.active);
-        voice.on(pitch, velocity);
+        this.voices[this.voices.length-1].on(pitch, velocity);
+        return this.voices[this.voices.length-1];
+    }
+
+    getVoice(number){
+        return this.voices[number];
+    }
+
+    getVoices(){
+        return this.voices;
+    }
+
+    getActiveVoices(){
+        return this.voices.filter(v=>v.active);
+    }
+
+    getInactiveVoices(){
+        return this.voices.filter(v=>!v.active);
+    }
+
+    getActiveVoiceCount(){
+        return this.voices.filter(v=>v.active).length;
+    }
+
+    flush(){
+        this.voices.forEach(v=>v.off());
     }
 
 }
