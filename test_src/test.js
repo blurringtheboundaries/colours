@@ -6,6 +6,7 @@ import start from './start.js';
 import { noteColours, COLOURS } from '../src/synth_colours.js';
 import VoiceManager from './voice.js';
 import initDMX from './initDmx.js';
+import processQueue from './processQueue.js';
 
 window.MidiMapper = MidiMapper;
 window.colours = {
@@ -67,7 +68,7 @@ function getColour(array, index){
 
 function formatColour(array, offset = 0){
     offset += 2;
-    return array.map((x,i)=>`${i+offset} ${x}`).join('\n') + `\n`;
+    return array.map((x,i)=>`${i+offset}:${x}`).join('\n') + `\n${offset - 1}:255\n`;
 }
 
 function writeNoteColour(note = 0, offset = 0){
@@ -76,7 +77,7 @@ function writeNoteColour(note = 0, offset = 0){
         for (let i=0; i<colours.polyphony; i++){
 
             console.log('init ', 1 + i * 7)
-            arduino.writer.write(`${1 + i * 7} 255\n`);
+            arduino.writer.write(`${1 + i * 7}:255\n`);
         }
         colours.initFlag = true;
     }
@@ -90,12 +91,12 @@ function writeNoteColour(note = 0, offset = 0){
     console.log('colour',offset, colour);
 
     
-    if(colours.lights[offset].join('') == colour.join('')){
-        return;
-    } else {
-        colours.queue.push(formatColour(colour, offset * 6));
+    // if(colours.lights[offset].join('') == colour.join('')){
+    //     return;
+    // } else {
+    //     colours.queue.push(formatColour(colour, offset * 6));
 
-    }
+    // }
 
     colours.lights[offset] = colour;
     // console.log(formatColour(colour, offset * 7).split('\n'));
@@ -104,19 +105,24 @@ function writeNoteColour(note = 0, offset = 0){
     // arduino.writer.write(formatColour(colour, offset * 6));
 }
 
-function processQueue(){
-    let {queue, arduino} = colours;
-    if(queue.length){
-        // arduino.writer.write(queue.shift());
-        arduino.writeQueue(queue);
-        queue = [];
-    }
+function processAll(){
+    let {queue, arduino, lights} = colours;
+    console.log(lights);
+    colours.queue = [];
+    Object.entries(lights).forEach(([offset, colour])=>{
+        colours.queue.push(formatColour(colour, offset * 7));
+    })
+    console.log(queue);
+    arduino.writeQueue(colours.queue);
+    queue = [];
+    console.log(queue);
 }
+
 
 // go
 
 assignButtons();
 
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour, start, noteColours, processQueue
+    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll
 })
