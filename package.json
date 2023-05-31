@@ -1,6 +1,6 @@
 {
   "name": "colours",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Colour project with Joel Daze",
   "main": "colours.js",
   "type": "module",
