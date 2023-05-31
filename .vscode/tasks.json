@@ -10,13 +10,7 @@
 			},
 			"problemMatcher": [],
 			"label": "npm: build",
-			"detail": "babel keyboard/src -o keyboard/build/pitch_colour.js; node compile.js; jsdoc -c jsdoc.json",
-		
-			"presentation": {
-				"reveal": "silent",
-				"revealProblems": "onProblem",
-				"close": true
-			}
+			"detail": "babel keyboard/src -o keyboard/build/pitch_colour.js; node compile.js; jsdoc -c jsdoc.json"
 		}
 	]
 }

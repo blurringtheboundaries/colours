@@ -11,7 +11,8 @@ window.colours = {
     socket: new SocketMapper(),
     arduino: new SerialMapper(),
     voices: new VoiceManager(4),
-    initFlag: false
+    initFlag: false,
+    polyphony: 4
 }
 
 window.noteColours = noteColours;
@@ -36,23 +37,23 @@ window.start = function start(){
 }
 
 
-/**
- * light cycle test
- */
+// /**
+//  * light cycle test
+//  */
 
-function testCycle(){
-    let {arduino} = colours;
-    let count = 0, direction = 1;
-    arduino.writer.write('1 255\n');
-    window.setInterval(()=>{
-       arduino.writer.write(`2 ${Math.floor(Math.abs(Math.sin(count/100)*255))}\n`);
-        // console.log(Math.floor(Math.abs(Math.sin(count/100)*255)))
-       arduino.writer.write(`3 ${count%255}\n`);
-       count += direction;
-       if(count == 255){direction = -1}
-       if(count == 0){direction = 1}
-    }, 30);
-}
+// function testCycle(){
+//     let {arduino} = colours;
+//     let count = 0, direction = 1;
+//     arduino.writer.write('1 255\n');
+//     window.setInterval(()=>{
+//        arduino.writer.write(`2 ${Math.floor(Math.abs(Math.sin(count/100)*255))}\n`);
+//         // console.log(Math.floor(Math.abs(Math.sin(count/100)*255)))
+//        arduino.writer.write(`3 ${count%255}\n`);
+//        count += direction;
+//        if(count == 255){direction = -1}
+//        if(count == 0){direction = 1}
+//     }, 30);
+// }
 
 function initSocket(){
     let {socket} = colours;
@@ -72,7 +73,7 @@ function initDMX(){
     socket.in.note = (e)=>{
         let [channel, pitch, velocity] = e;
         let voiceArray = voices.update(pitch, velocity, true);
-        console.log(voiceArray.map(v=>v.pitch));
+        // console.log(voiceArray.map(v=>v.pitch));
         voiceArray.forEach((v,i)=>{
             // todo: check if pitch has changed to save on writes
           writeNoteColour(v.pitch % 12, i)
@@ -109,14 +110,18 @@ function getColour(array, index){
 
 function formatColour(array, offset = 0){
     offset += 2;
-    return array.map((x,i)=>`${i+offset} ${x}`).join(' ') + `\n`;
+    return array.map((x,i)=>`${i+offset} ${x}`).join('\n') + `\n`;
 }
 
 function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag} = colours;
     if(!initFlag){
-        arduino.writer.write(`${1 + offset} 255\n`);
-        initFlag = true;
+        for (let i=0; i<colours.polyphony; i++){
+
+            console.log('sending ', 1 + i * 7)
+            arduino.writer.write(`${1 + i * 7} 255\n`);
+        }
+        colours.initFlag = true;
     }
     let colour;
     if(note == -1){
@@ -125,7 +130,7 @@ function writeNoteColour(note = 0, offset = 0){
         colour = getColour(noteColours.daze.led, note);
     
     }
-    console.log(colour)
+    console.log(formatColour(colour, offset * 7).split('\n'));
     arduino.writer.write(formatColour(colour, offset * 6));
 }
 

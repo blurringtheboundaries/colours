@@ -12,3 +12,5 @@ console.log( "\u001b[1;44m Blue background" );
 console.log( "\u001b[1;45m Purple background" );
 console.log( "\u001b[1;46m Cyan background" );
 ```
+
+https://www.parts-express.com/pedocs/manuals/244-516--talent-mp12-rgbw-dmx-led-stage-light-manual.pdf
