@@ -12,7 +12,13 @@ window.colours = {
     arduino: new SerialMapper(),
     voices: new VoiceManager(4),
     initFlag: false,
-    polyphony: 4
+    polyphony: 4,
+    lights:{
+        1:[0,0,0],
+        2:[0,0,0],
+        3:[0,0,0],
+        4:[0,0,0]
+    }
 }
 
 window.noteColours = noteColours;
@@ -25,35 +31,16 @@ window.start = function start(){
     let id = Math.random().toString(36).slice(2);
     midi.map[0].noteRange['0,127'] = function(pitch, velocity){
         let voiceArray = voices.update(pitch, velocity, true);
-        // console.log(voiceArray.map(v=>v.pitch));
+ 
         document.querySelectorAll('.testBar').forEach((x,i)=>{
             x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
         })
-        // console.log('test', id, pitch, velocity);
+ 
         socket.emitNote(0, pitch, velocity);
     };
     midi.listen();
     
 }
-
-
-// /**
-//  * light cycle test
-//  */
-
-// function testCycle(){
-//     let {arduino} = colours;
-//     let count = 0, direction = 1;
-//     arduino.writer.write('1 255\n');
-//     window.setInterval(()=>{
-//        arduino.writer.write(`2 ${Math.floor(Math.abs(Math.sin(count/100)*255))}\n`);
-//         // console.log(Math.floor(Math.abs(Math.sin(count/100)*255)))
-//        arduino.writer.write(`3 ${count%255}\n`);
-//        count += direction;
-//        if(count == 255){direction = -1}
-//        if(count == 0){direction = 1}
-//     }, 30);
-// }
 
 function initSocket(){
     let {socket} = colours;
@@ -131,6 +118,7 @@ function writeNoteColour(note = 0, offset = 0){
     
     }
     console.log(formatColour(colour, offset * 7).split('\n'));
+    // todo: try writeQueue in the SerialMapper instance
     arduino.writer.write(formatColour(colour, offset * 6));
 }
 
