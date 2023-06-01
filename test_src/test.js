@@ -28,6 +28,18 @@ window.colours = {
         22:[0,0,0],
         33:[0,0,0]
     },
+    intensties:{
+        1:0,
+        11:0,
+        22:0,
+        33:0
+    },
+    intensties_last:{
+        1:0,
+        11:0,
+        22:0,
+        33:0
+    },
     queue: [],
 }
 
@@ -77,6 +89,20 @@ function formatColour(array, offset = 0){
     return array.map((x,i)=>`${i+offset}:${x}`).join('\n') + `\n${offset - 1}:255\n`;
 }
 
+function writeIntensities(){
+    let {arduino, initFlag, intensties} = colours;
+    let intensity;
+    Object.entries(intensties).forEach(([index, intensity])=>{
+        if(intensity == colours.intensties_last[index]){
+        } else {
+            colours.queue.push(`${index}:${intensity}\n`);
+            colours.intensties_last[index] = intensity;
+        }
+    });
+    // queue = [];
+    // console.log(queue);
+}
+
 function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag, lights} = colours;
     let colour;
@@ -97,11 +123,6 @@ function processAll(){
     // console.log(lights);
     colours.queue = [];
     Object.entries(lights).forEach(([index, colour])=>{
-        // console.log(colour)
-        // console.log('test',colours.lights_last)
-        // if(!colour.length) return;
-        // console.log('join1',colour.join(''))
-        // console.log('test2222', colours.lights_last[index], index)
         if(colour.join('') == colours.lights_last[index].join('')){
         } else {
             colours.queue.push(formatColour(colour, index));
@@ -109,6 +130,7 @@ function processAll(){
         }
         
     })
+    writeIntensities();
     console.log(queue);
     arduino.writeQueue(colours.queue);
     queue = [];
