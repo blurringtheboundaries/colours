@@ -41,7 +41,18 @@ window.colours = {
         33:0
     },
     queue: [],
+    audio:{
+        mic: new Tone.UserMedia(),
+        meter: new Tone.Meter()
+    },
+    multiplier: 1
 }
+
+
+colours.audio.mic.connect(colours.audio.meter);
+colours.audio.mic.open().then(()=>{
+});
+    
 
 function initSocket(){
     let {socket} = colours;
