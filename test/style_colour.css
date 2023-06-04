@@ -95,4 +95,5 @@ grid-auto-rows: max-content; */
   stroke: white;
   stroke-width: 1;
   opacity:1;
+  touch-action: none;
 }

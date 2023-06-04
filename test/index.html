@@ -13,7 +13,7 @@
     
     <!-- partial:index.partial.html -->
     <banner class="heading">
-      <!-- <h1>Pitch-colour wheel example</h1> -->
+      
     </banner>
     <div class="parent">
     <!-- <div class="description"> -->
@@ -44,8 +44,7 @@
           </style>
         </defs>
         <title>
-          A colour wheel representing 12 musical notes and their associated
-          colours.
+          A colour wheel representing 12 musical notes and their associated colours.  Scan through the elements of the wheel to learn about the associations, and interact with the wheel to play the relevant notes.
         </title>
         <ellipse
           cx="200"
@@ -393,12 +392,41 @@
           </text>
         </g>
       </svg>
+      <canvas id="canvas" style="width:100%; display:block; position:absolute;height:100%;top:0; bottom:0; left:0; right:0;margin:auto;" aria-hidden="true"></canvas>
     </main>
   </parent>
-    <!-- partial -->
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"></script>
-    <script src="./script.js"></script>
+    <!-- <script src="./script.js"></script> -->
+    
     <script>
+      let previewSynth = new Tone.PolySynth(Tone.synth,{oscillator : {
+          type : "sine2",
+          partials:[1,0.5],
+          volume:'-10',
+          options:{
+            envelope:{
+              attack:1.1,
+              decay:0.1,
+              sustain:0.1,
+              release:1.1
+            }
+          }
+          
+      }}).toDestination();
+
+      Array.from(document.querySelectorAll('.wedge')).forEach((wedge,i)=>{
+          wedge.setAttribute('role','button')
+          wedge.onclick = function(){
+            if(wedge.dataset.status!='active'){
+              Tone.start();
+              previewSynth.triggerAttackRelease(this.dataset.note,0.5)
+              console.log(this.dataset.note);
+              this.style.opacity=1;
+              setInterval(function(){this.style.opacity=0.9}.bind(this),500)
+            }
+          }
+      })
       function loader(){
         colours.socket.listen();
         colours.socket.socket.on('midi', function(data){
@@ -413,8 +441,21 @@
         })
         colours.touch.setAction('.wedge').listen();
         document.addEventListener('touch-pickup',(e)=>{
-          let {type, id} = e.detail;
+          let {type, id, element} = e.detail;
           console.log(type, id);
+          Tone.start();
+          let note = parseInt(id.split('_')[1]) + 60;
+          if(type =='start' || type == 'enter'){
+            previewSynth.triggerAttack(element.dataset.note, Tone.now())
+            element.style.opacity = 1;
+            element.dataset.status = 'active';
+          } else if(type == 'end' || type == 'leave'){
+            previewSynth.triggerRelease(element.dataset.note)
+            element.style.opacity = 0.9;
+            setInterval(function(){this.dataset.status = 'inactive'}.bind(element),500)
+            // element.dataset.status = 'inactive';
+          }
+          // previewSynth.triggerAttackRelease(id,0.5)
         })
       }
       function orderByFifths(value = true){
