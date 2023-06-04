@@ -17,11 +17,11 @@
     "babel-preset-env": "^1.7.0",
     "fs": "0.0.1-security",
     "fs-extra": "^10.1.0",
-    "js-beautify": "^1.14.4",
-    "jsdoc": "^3.6.10",
-    "midi-mapper": "^1.0.14",
+    "js-beautify": "^1.14.8",
+    "jsdoc": "^3.6.11",
+    "midi-mapper": "^1.0.15",
     "pug": "^3.0.2",
-    "webpack": "^5.83.1",
+    "webpack": "^5.85.0",
     "webpack-cli": "^5.1.1"
   }
 }

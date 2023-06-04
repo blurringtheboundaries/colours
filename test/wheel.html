@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pitch-colour wheel (Joel Daze)</title>
+    <link rel="stylesheet" href="./style_colour.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body onload="loader();">
+    
+    <!-- partial:index.partial.html -->
+    <banner class="heading">
+      <!-- <h1>Pitch-colour wheel example</h1> -->
+    </banner>
+    <div class="parent">
+    <!-- <div class="description"> -->
+      <!-- <p>This page contains a colour wheel divided into twelve segments.</p>
+      <p>Each segment is labelled with name of a musical note.</p> -->
+      <!-- <p>To help us make this accessible, please confirm if <ol><li> the segmented circle and text are clear and legible</li> <li>  the position of the labels is clear: for example, C is connected to the orange segment.</li></ol></p> -->
+      <!-- <p>For example:</p> -->
+      <!-- <ul> -->
+        <!-- <li><b>C</b> is connected to the <b>orange</b> segment.</li>
+        <li><b>G</b> is connected to the <b>red</b> segment.</li> -->
+      <!-- </ul> -->
+    <!-- </div> -->
+    <main class="main">
+      <svg
+        id="daze"
+        width="100%"
+        height="100%"
+        viewbox="0 0 400 400"
+        transform-origin="center center"
+      >
+        <defs>
+          <style>
+            text {
+              font-family: Arial, Helvetica;
+              fill: #fff;
+              font-size: 1.1rem;
+            }
+          </style>
+        </defs>
+        <title>
+          A colour wheel representing 12 musical notes and their associated
+          colours.
+        </title>
+        <ellipse
+          cx="200"
+          cy="200"
+          ry="160"
+          rx="160"
+          fill="black"
+          stroke="black"
+          stroke-width="2px"
+        ></ellipse>
+        <g id="wedges" transform-origin="200 200" transform="rotate(-15)">
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(0)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(30)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(60)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(90)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(120)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(150)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(180)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(210)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(240)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(270)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(300)"
+          ></rect>
+          <rect
+            x="242.70514244191594"
+            y="26.133351267967697"
+            width="10px"
+            height="10px"
+            fill="none"
+            aria-hidden="true"
+            transform-origin="center center"
+            transform="rotate(330)"
+          ></rect>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(0)"
+            data-note="C4"
+            aria-label="C, Orange"
+            class="wedge"
+            id="wedge_0"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(255, 153, 51)"
+          >
+            <title>C, Orange</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(30)"
+            data-note="C#4"
+            aria-label="C sharp, Pale Orange"
+            class="wedge"
+            id="wedge_1"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(255, 204, 153)"
+          >
+            <title>C sharp, Pale Orange</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(60)"
+            data-note="D4"
+            aria-label="D, Magenta"
+            class="wedge"
+            id="wedge_2"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(248, 90, 248)"
+          >
+            <title>D, Magenta</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(90)"
+            data-note="D#4"
+            aria-label="D sharp, Greenish Grey"
+            class="wedge"
+            id="wedge_3"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(195, 252, 200)"
+          >
+            <title>D sharp, Greenish Grey</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(120)"
+            data-note="E4"
+            aria-label="E, Sea green"
+            class="wedge"
+            id="wedge_4"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(12, 255, 255)"
+          >
+            <title>E, Sea green</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(150)"
+            data-note="F4"
+            aria-label="F, Yellow"
+            class="wedge"
+            id="wedge_5"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(255, 255, 3)"
+          >
+            <title>F, Yellow</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(180)"
+            data-note="F#4"
+            aria-label="F sharp, Rust"
+            class="wedge"
+            id="wedge_6"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(224, 181, 162)"
+          >
+            <title>F sharp, Rust</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(210)"
+            data-note="G4"
+            aria-label="G, Red"
+            class="wedge"
+            id="wedge_7"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(255, 1, 1)"
+          >
+            <title>G, Red</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(240)"
+            data-note="G#4"
+            aria-label="G sharp, Lilac"
+            class="wedge"
+            id="wedge_8"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(195, 117, 150)"
+          >
+            <title>G sharp, Lilac</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(270)"
+            data-note="A4"
+            aria-label="A, Purple"
+            class="wedge"
+            id="wedge_9"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(204, 102, 255)"
+          >
+            <title>A, Purple</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(300)"
+            data-note="A#4"
+            aria-label="A sharp, Pale Green"
+            class="wedge"
+            id="wedge_10"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(51, 204, 51)"
+          >
+            <title>A sharp, Pale Green</title>
+          </path>
+          <path
+            d="M200 200 L200 40 A 160 160 0 0 1 280 61.43593539448983 z"
+            fill="#f0f"
+            transform-origin="center center"
+            transform="rotate(330)"
+            data-note="B4"
+            aria-label="B, Deep pool blue"
+            class="wedge"
+            id="wedge_11"
+            stroke-width="1px"
+            stroke="black"
+            style="fill: rgb(7, 131, 220)"
+          >
+            <title>B, Deep pool blue</title>
+          </path>
+        </g>
+        <g>
+          <text aria-hidden="true" x="196.25" y="30.66407012939453">C</text>
+          <text aria-hidden="true" x="283.66180419921875" y="55.35806655883789">
+            C♯
+          </text>
+          <text aria-hidden="true" x="346.0683288574219" y="121.39694213867188">
+            D
+          </text>
+          <text aria-hidden="true" x="369.3359069824219" y="208.49745178222656">
+            D♯
+          </text>
+          <text aria-hidden="true" x="344.6419372558594" y="295.90924072265625">
+            E
+          </text>
+          <text aria-hidden="true" x="278.6030578613281" y="360.21044921875">
+            F
+          </text>
+          <text aria-hidden="true" x="191.50254821777344" y="381.5833740234375">
+            F♯
+          </text>
+          <text aria-hidden="true" x="104.09074401855469" y="356.8893737792969">
+            G
+          </text>
+          <text aria-hidden="true" x="39.78955078125" y="292.74517822265625">
+            G♯
+          </text>
+          <text aria-hidden="true" x="18.41661834716797" y="203.75">A</text>
+          <text aria-hidden="true" x="43.11061477661133" y="116.33819580078125">
+            A♯
+          </text>
+          <text aria-hidden="true" x="107.25481414794922" y="53.93168640136719">
+            B
+          </text>
+        </g>
+      </svg>
+    </main>
+  </parent>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"></script>
+    <script src="./script.js"></script>
+    <script>
+      function loader(){
+        colours.socket.listen();
+        colours.socket.socket.on('midi', function(data){
+        console.log(data);
+        colours.socket.in.note = (e)=>{
+            document.querySelectorAll('.wedge').forEach((x,i)=>{
+              x.style.transition = 'opacity 0.5s';
+              x.style.opacity = (e[1]%12 == i) ? 1 : 0.2;
+            })
+            console.log(e[2]%12)
+          }
+        })
+      }
+      
+    </script>
+  </body>
+</html>

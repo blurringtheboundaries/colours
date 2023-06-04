@@ -130,7 +130,11 @@ function writeNoteColour(note = 0, offset = 0){
  }
 
 function processAll(){
-    let {queue, arduino, lights} = colours;
+    
+    let {queue, arduino, lights, audio} = colours;
+    let duck = Tone.dbToGain(audio.meter.getLevel())*1;
+    if(duck > 1){ duck=1};
+    console.log(duck);
     // console.log(lights);
     colours.queue = [];
     Object.entries(lights).forEach(([index, colour])=>{
