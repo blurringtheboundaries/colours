@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200&family=Nunito:wght@200&family=Rubik:wght@900&display=swap');
+
+
 h1{
     font-family:Arial, Helvetica;
     color: white;
@@ -27,6 +31,7 @@ h1{
 
 body{
     background:#1d1e22;
+    background:#444444;
     font-size:14pt;
 }
 
@@ -49,7 +54,7 @@ grid-auto-rows: max-content; */
     max-width:50em;
     background-color:#202020;
     display:block;
-    font-family:Arial, Helvetica;
+    font-family:Rubik, Helvetica;
     color: #aaaebc;
     min-width: 20em;
     line-height:1.5;
@@ -73,7 +78,7 @@ grid-auto-rows: max-content; */
 }
 
 .wedge{
-    transition: all 0.1s ease;
+    transition: all 0.1s ease, transform 2s ease;
     opacity:0.9;
     cursor:pointer;
 }

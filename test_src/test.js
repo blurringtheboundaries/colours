@@ -1,6 +1,7 @@
 import MidiMapper from 'midi-mapper';
 import SocketMapper from '@matthewscharles/socket-mapper';
 import SerialMapper from 'serial-mapper';
+import MultitouchMapper from '@matthewscharles/multitouch-mapper';
 import { dmxWrite } from './dmx.js';
 import start from './start.js';
 import { noteColours, COLOURS } from '../src/synth_colours.js';
@@ -14,6 +15,7 @@ window.colours = {
     socket: new SocketMapper(),
     arduino: new SerialMapper(),
     voices: new VoiceManager(4),
+    touch: new MultitouchMapper(),
     initFlag: false,
     polyphony: 4,
     lights:{

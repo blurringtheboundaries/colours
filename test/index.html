@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Pitch-colour wheel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200&family=Nunito:wght@200&family=Rubik:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style_colour.css" />
     <script src="main.js" defer></script>
   </head>
@@ -408,7 +411,20 @@
             console.log(e[2]%12)
           }
         })
+        colours.touch.setAction('.wedge').listen();
+        document.addEventListener('touch-pickup',(e)=>{
+          let {type, id} = e.detail;
+          console.log(type, id);
+        })
       }
+      function orderByFifths(value = true){
+        document.querySelectorAll('.wedge').forEach((x,i)=>{
+            let rotation = value ? (12 - ((i * 5) % 12)) : i;
+            rotation *= 30;
+            x.style.transform=`rotate(${rotation}deg)`;
+        })
+      }
+     
       
     </script>
   </body>
