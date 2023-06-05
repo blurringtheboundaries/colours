@@ -9,12 +9,16 @@ html(lang="en")
         script(src="main.js" type="module")
         link(rel="stylesheet" href="style.css")
     body(style="background-color: #000000;") 
-        button#socketInit() listen...
-        button#dmxInit() dmx connect
+        .controls
+            button#socketInit() listen...
+            button#dmxInit() dmx connect
+            input#autoWrite(type='checkbox')
+            input#always_on(type='checkbox')
         .testBars 
             .testBar 0
             .testBar 1
             .testBar 2
             .testBar 3
+        
     script.
        

@@ -126,8 +126,7 @@ function writeIntensities(){
             colours.intensties_last[index] = intensity;
         }
     });
-    // queue = [];
-    // console.log(queue);
+    
 }
 
 function writeNoteColour(note = 0, offset = 0){
