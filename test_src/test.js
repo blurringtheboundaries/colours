@@ -42,6 +42,8 @@ window.colours = {
         22:0,
         33:0
     },
+    always_on:true,
+    always_write:true,
     queue: [],
     audio:{
         // mic: new Tone.UserMedia(),
@@ -95,16 +97,23 @@ function getColour(array, index){
     if(output[0] == '#'){
         output = output.slice(1);
     }
+
     if(output.length == 3){
         output = output.split('').map(x=>x+x).join('');
     }
+
     output = output.match(/.{2}/g).map(x=>parseInt(x, 16));
     return output;
 }
 
 function formatColour(array, offset = 0){
+    let {always_on} = colours;
     offset = parseInt(offset)+1;
-    return array.map((x,i)=>`${i+offset}:${x}`).join('\n') + `\n${offset - 1}:255\n`;
+    let output = array.map((x,i)=>`${i+offset}:${x}`).join('\n');
+    if(always_on){
+        output += `\n${offset - 1}:255\n`
+    }
+    return output;
 }
 
 function writeIntensities(){
@@ -130,22 +139,21 @@ function writeNoteColour(note = 0, offset = 0){
         colour = getColour(noteColours.daze.led, note);
     
     }
-    console.log('colour',offset, colour);
+    // console.log('colour',offset, colour);
 
     colours.lights[Object.keys(lights)[offset]] = colour;
     processAll();
  }
 
 function processAll(){
-    let {queue, arduino, lights, audio} = colours;
+    let {queue, arduino, lights, audio, always_write} = colours;
     
     let duck;
     if(audio.meter){
         duck = Tone.dbToGain(audio.meter.getLevel())*1;
         if(duck > 1){ duck=1};
     }
-        
-    colours.queue = [];
+ 
     Object.entries(lights).forEach(([index, colour])=>{
         if(colour.join('') == colours.lights_last[index].join('')){
         } else {
@@ -155,10 +163,29 @@ function processAll(){
         
     })
     writeIntensities();
-    console.log(queue);
-    arduino.writeQueue(colours.queue);
-    queue = [];
+    
+    if(always_write){
+        writeQueue();
+    }
 
+}
+
+function autoWrite(value = true, interval = 30){
+    colours.alwayws_write = value;
+    if(value){
+        colours.interval = setInterval(writeQueue, interval);
+    } else {
+        clearInterval(colours.interval);
+    }
+    
+}
+
+function writeQueue(){
+    let {queue, arduino} = colours;
+    if(queue.length){
+        arduino.writeQueue(queue);
+        colours.queue = [];
+    }
 }
 
 
@@ -167,5 +194,5 @@ function processAll(){
 assignButtons();
 
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll
+    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio
 })
