@@ -10,7 +10,7 @@ const buildFolder = 'test';
 
 // Quickly testing pug rendering...
 
-let files = ['input','midi','qr']
+let files = ['input','midi','qr', 'keyboard']
 files.forEach(x=>{
     let html = pug.render(fs.readFileSync(`${sourceFolder}/${x}.pug`, "utf-8"), {filename: `${sourceFolder}/${x}.pug`});
     // html = beautify(html);
