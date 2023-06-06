@@ -10,10 +10,10 @@ const buildFolder = 'test';
 
 // Quickly testing pug rendering...
 
-let files = ['input','midi']
+let files = ['input','midi','qr']
 files.forEach(x=>{
     let html = pug.render(fs.readFileSync(`${sourceFolder}/${x}.pug`, "utf-8"), {filename: `${sourceFolder}/${x}.pug`});
-    html = beautify(html);
+    // html = beautify(html);
     fs.writeFileSync(`${buildFolder}/${x}.html`, html, "utf-8");
     // fs.copyFileSync(`${sourceFolder}/script.js`, `${buildFolder}/script.js`); 
    
