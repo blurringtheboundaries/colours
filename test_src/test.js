@@ -42,6 +42,12 @@ window.colours = {
         22:0,
         33:0
     },
+    decays:{
+        1:0,
+        11:0,
+        22:0,
+        33:0
+    },
     always_on:true,
     always_write:true,
     queue: [],
@@ -75,15 +81,21 @@ function initSocket(){
     } 
 }
 
-
+function decay(){
+    let {voices, decays} = colours;
+    let voiceArray = voices.voices;
+    voiceArray.forEach(v=>{
+        if(v.active){
+            v.decay = Math.max(v.decay - 1, 0);
+        }
+    });
+}
 
 function assignButtons(){
     document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
     document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
-    
+    document.querySelectorAll('#flush').forEach(x=>x.addEventListener('click', voices.flush));
 }
-
-
 
 /**
  * 

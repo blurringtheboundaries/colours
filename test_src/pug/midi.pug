@@ -12,8 +12,13 @@ html(lang="en")
         .controls
             button#socketInit() listen...
             button#dmxInit() dmx connect
+            button#flush flush
+            label(for="autoWrite") autoWrite
             input#autoWrite(type='checkbox')
+            label(for="always_on") always_on
             input#always_on(type='checkbox')
+            label(for="ignore_off") ignore_off
+            input#ignore_off(type='checkbox')
         .testBars 
             .testBar 0
             .testBar 1
