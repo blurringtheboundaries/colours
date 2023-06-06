@@ -1,4 +1,4 @@
-<!-- usual boilerplate--><!DOCTYPE html><html lang="en"><head><title>Colour test</title><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js"></script></head><body style="background-color: #ffffff;"><svg viewBox="0, 0, 512, 512" id="qr" class="qr__svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="512" height="512">
+<!-- usual boilerplate--><!DOCTYPE html><html lang="en"><head><title>Colour test</title><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js"></script><script src="main.js" type="module"></script></head><body style="background-color: #000000;" onload="loader();"><svg viewBox="0, 0, 512, 512" id="qr" class="qr__svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="512" height="512">
     <style>
         rect{
             fill: #000;
@@ -540,4 +540,14 @@
     <rect x="299.7073170731707" y="449.5609756097561" width="12.487804878048781" height="12.487804878048781" style="shape-rendering:crispEdges;"></rect>
     <rect x="387.1219512195122" y="449.5609756097561" width="12.487804878048781" height="12.487804878048781" style="shape-rendering:crispEdges;"></rect>
     <rect x="449.5609756097561" y="449.5609756097561" width="12.487804878048781" height="12.487804878048781" style="shape-rendering:crispEdges;"></rect>
-</svg></body></html>
+</svg></body><script>function loader(){
+    document.querySelectorAll('rect').forEach((x,i)=>{
+        let index = Math.floor(x.getBoundingClientRect().x/460*12);
+        console.log(noteColours.daze.hex[index])
+        //- x.style.stroke = noteColours.daze.hex[index];
+        x.style.strokeWidth = 2;
+        //- x.style.stroke = 'black'
+        x.style.fill = noteColours.daze.hex[index];
+    })
+    document.querySelector('rect').style.fill='black';
+}</script></html>
