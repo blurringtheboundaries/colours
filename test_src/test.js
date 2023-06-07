@@ -51,7 +51,7 @@ window.colours = {
     always_on:true,
     always_write:true,
     use_velocity:true,
-    use_decay:true,
+    use_decay:false,
     queue: [],
     audio:{
         
