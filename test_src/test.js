@@ -51,6 +51,7 @@ window.colours = {
     always_on:true,
     always_write:true,
     use_velocity:true,
+    use_decay:true,
     queue: [],
     audio:{
         
@@ -151,6 +152,7 @@ function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag, lights} = colours;
     let colour, vel;
     if(note == -1){
+        if(colours.use_decay){return;}
         colour = [0,0,0];
     } else {
         colour = getColour(noteColours.daze.led, note % 12);
@@ -213,12 +215,21 @@ function getDmxIndex(number){
 
 function update(){
     let {arduino, initFlag, lights, intensities, voices} = colours;
-    voices.forEach((v,i)=>{
+    voices.voices.forEach((v,i)=>{
         console.log(v.active, intensities[getDmxIndex(i)])
+        if(!v.active && intensities[getDmxIndex(i)]){
+            console.log(intensities[getDmxIndex(i)]])
+            colours.intensities[getDmxIndex(i)] -= 1;
+            writeNoteColour(v.pitch, i);
+        }
+        console.log('intensities', intensities)
     })
 }
 
 function writeQueue(){
+    if(colours.use_decay){
+        update();
+    }
     let {queue, arduino} = colours;
     if(queue.length){
         arduino.writeQueue(queue);
@@ -232,5 +243,5 @@ function writeQueue(){
 assignButtons();
 
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio
+    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update
 })

@@ -41,7 +41,7 @@ function initDMX(){
             
         }
         let voiceNumber = voices.update(pitch, velocity, false);
-        console.log('dmx voice number', voiceNumber, getDmxIndex(voiceNumber))
+        // console.log('dmx voice number', voiceNumber, getDmxIndex(voiceNumber))
         colours.intensities[getDmxIndex(voiceNumber)] = velocity;
         colours.voices.voices.forEach((v,i)=>{
           writeNoteColour(v.pitch, i);
