@@ -18,6 +18,11 @@ function initDMX(){
                 voices.flush();
                 colours.hold = false;
                 updateScreenColours();
+                let voiceArray = voices.voices.map(v=>v.pitch);
+                voiceArray.forEach((v,i)=>{ 
+                  colours.lights[Object.keys(colours.lights)[i]].write = [0,0,0];
+                });
+                processAll();
             }
         }
     }
@@ -29,14 +34,10 @@ function initDMX(){
             }
         }
         let voiceArray = voices.update(pitch, velocity, true);
-        // console.log(voiceArray.map(v=>v.pitch));
         voiceArray.forEach((v,i)=>{
-            
           writeNoteColour(v.pitch % 12, i);
         });
-        // document.querySelectorAll('.testBar').forEach((x,i)=>{
-        //     x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
-        // })   
+
         updateScreenColours();
     }
     socket.listen();

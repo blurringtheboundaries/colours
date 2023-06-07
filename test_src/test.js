@@ -59,8 +59,6 @@ window.colours = {
     hold: false
 }
 
-
-    
 function initAudio(){
     colours.audio.mic = new Tone.UserMedia();
     colours.audio.meter = new Tone.Meter();
@@ -68,7 +66,6 @@ function initAudio(){
     colours.audio.mic.open().then(()=>{
     });
 }
-
 
 function initSocket(){
     let {socket} = colours;
