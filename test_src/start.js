@@ -10,6 +10,9 @@ function start(){
  
         socket.emitNote(0, pitch, velocity);
     };
+    midi.map[0].cc[64] = function(value){
+        socket.emitCC(0, 64, value);
+    }
     midi.listen();
     
 }

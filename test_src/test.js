@@ -55,7 +55,8 @@ window.colours = {
         // mic: new Tone.UserMedia(),
         // meter: new Tone.Meter()
     },
-    multiplier: 1
+    multiplier: 1,
+    hold: false
 }
 
 
@@ -94,8 +95,16 @@ function decay(){
 function assignButtons(){
     document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
     document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
-    document.querySelectorAll('#flush').forEach(x=>x.addEventListener('click', voices.flush));
+    document.querySelectorAll('#flush').forEach(x=>x.addEventListener('click', colours.voices.flush));
+
+    document.querySelectorAll('#hold').forEach(x=>{
+        x.addEventListener('input', function(){
+        hold(this.checked);
+        })
+    })
 }
+
+
 
 /**
  * 
@@ -189,6 +198,10 @@ function autoWrite(value = true, interval = 30){
         clearInterval(colours.interval);
     }
     
+}
+
+function hold(value){
+    colours.hold = value;
 }
 
 function writeQueue(){

@@ -1,8 +1,10 @@
 function initDMX(){
     let {arduino, socket, voices} = window.colours;
     arduino.connect();
+    socket.in.cc = (e) => {console.log(e)}
     socket.in.note = (e)=>{
         let [channel, pitch, velocity] = e;
+        // if(!velocity) return;
         let voiceArray = voices.update(pitch, velocity, true);
         // console.log(voiceArray.map(v=>v.pitch));
         voiceArray.forEach((v,i)=>{
