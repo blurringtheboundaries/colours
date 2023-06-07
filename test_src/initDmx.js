@@ -1,3 +1,11 @@
+function updateScreenColours(){
+    let {voices} = window.colours;
+    let voiceArray = voices.voices;
+    document.querySelectorAll('.testBar').forEach((x,i)=>{
+        x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
+    })   
+}
+
 function initDMX(){
     let {arduino, socket, voices} = window.colours;
     arduino.connect();
@@ -6,9 +14,10 @@ function initDMX(){
         if(cc == 64){
             if(value == 127){
                 colours.hold = true;
-            } else if(colours.hold) {
+            } else if(colours.hold && value == 0) {
                 voices.flush();
                 colours.hold = false;
+                updateScreenColours();
             }
         }
     }
@@ -25,9 +34,10 @@ function initDMX(){
             
           writeNoteColour(v.pitch % 12, i);
         });
-        document.querySelectorAll('.testBar').forEach((x,i)=>{
-            x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
-        })   
+        // document.querySelectorAll('.testBar').forEach((x,i)=>{
+        //     x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
+        // })   
+        updateScreenColours();
     }
     socket.listen();
 }
