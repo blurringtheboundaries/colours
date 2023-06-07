@@ -50,6 +50,7 @@ window.colours = {
     },
     always_on:true,
     always_write:true,
+    use_velocity:true,
     queue: [],
     audio:{
         // mic: new Tone.UserMedia(),
@@ -149,15 +150,20 @@ function writeIntensities(){
 
 function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag, lights} = colours;
-    let colour;
+    let colour, vel;
     if(note == -1){
         colour = [0,0,0];
     } else {
-        colour = getColour(noteColours.daze.led, note);
-    
+        colour = getColour(noteColours.daze.led, note % 12);
+        
+        let noteIndex = colours.voices.voices.findIndex(v=>v.pitch==note);
+        vel = colours.voices.voices[noteIndex].velocity;
+        console.log('intensity', vel);
+        colour = colour.map(x=>Math.floor(x*vel/127));
     }
-    // console.log('colour',offset, colour);
-
+    
+    
+    console.log('colour', colour)
     colours.lights[Object.keys(lights)[offset]] = colour;
     processAll();
  }

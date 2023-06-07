@@ -38,7 +38,7 @@ function initDMX(){
         let voiceNumber = voices.update(pitch, velocity, false);
         colours.intensities[voiceNumber] = velocity;
         colours.voices.voices.forEach((v,i)=>{
-          writeNoteColour(v.pitch % 12, i);
+          writeNoteColour(v.pitch, i);
         });
 
         updateScreenColours();
