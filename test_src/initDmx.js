@@ -32,9 +32,12 @@ function initDMX(){
             if(colours.hold){
                 return;
             }
+        } else {
+            
         }
-        let voiceArray = voices.update(pitch, velocity, true);
-        voiceArray.forEach((v,i)=>{
+        let voiceNumber = voices.update(pitch, velocity, false);
+        colours.intensities[voiceNumber] = velocity;
+        colours.voices.voices.forEach((v,i)=>{
           writeNoteColour(v.pitch % 12, i);
         });
 

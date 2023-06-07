@@ -30,13 +30,13 @@ window.colours = {
         22:[0,0,0],
         33:[0,0,0]
     },
-    intensties:{
+    intensities:{
         1:0,
         11:0,
         22:0,
         33:0
     },
-    intensties_last:{
+    intensities_last:{
         1:0,
         11:0,
         22:0,
@@ -135,13 +135,13 @@ function formatColour(array, offset = 0){
 }
 
 function writeIntensities(){
-    let {arduino, initFlag, intensties} = colours;
+    let {arduino, initFlag, intensities} = colours;
     let intensity;
-    Object.entries(intensties).forEach(([index, intensity])=>{
-        if(intensity == colours.intensties_last[index]){
+    Object.entries(intensities).forEach(([index, intensity])=>{
+        if(intensity == colours.intensities_last[index]){
         } else {
             colours.queue.push(`${index}:${intensity}\n`);
-            colours.intensties_last[index] = intensity;
+            colours.intensities_last[index] = intensity;
         }
     });
     
