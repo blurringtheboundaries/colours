@@ -1,3 +1,8 @@
+function getDmxIndex(number){
+    let indices = Object.keys(colours.lights);
+    return indices[number];
+}
+
 function updateScreenColours(){
     let {voices} = window.colours;
     let voiceArray = voices.voices;
@@ -36,7 +41,8 @@ function initDMX(){
             
         }
         let voiceNumber = voices.update(pitch, velocity, false);
-        colours.intensities[voiceNumber] = velocity;
+        console.log('dmx voice number', voiceNumber, getDmxIndex(voiceNumber))
+        colours.intensities[getDmxIndex(voiceNumber)] = velocity;
         colours.voices.voices.forEach((v,i)=>{
           writeNoteColour(v.pitch, i);
         });

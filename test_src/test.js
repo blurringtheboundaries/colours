@@ -53,8 +53,7 @@ window.colours = {
     use_velocity:true,
     queue: [],
     audio:{
-        // mic: new Tone.UserMedia(),
-        // meter: new Tone.Meter()
+        
     },
     multiplier: 1,
     hold: false
@@ -205,6 +204,18 @@ function autoWrite(value = true, interval = 30){
 
 function hold(value){
     colours.hold = value;
+}
+
+function getDmxIndex(number){
+    let indices = Object.keys(colours.lights);
+    return indices[number];
+}
+
+function update(){
+    let {arduino, initFlag, lights, intensities, voices} = colours;
+    voices.forEach((v,i)=>{
+        console.log(v.active, intensities[getDmxIndex(i)])
+    })
 }
 
 function writeQueue(){
