@@ -1,4 +1,10 @@
-<!-- usual boilerplate--><!DOCTYPE html><html lang="en"><head><title>Colour test</title><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js"></script><link rel="stylesheet" href="style.css"></head><body><div class="keyboard" id="keyboard" style="position:absolute; bottom:0px; margin:none; width: 1710px; transform:translate(-200px -200px) scale(0.75);">
+<!-- usual boilerplate--><!DOCTYPE html><html lang="en"><head><title>Colour test</title><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js"></script><link rel="stylesheet" href="style.css"><style>.pianoNote{
+    transition:all 0.1s;
+}
+.active{
+    opacity:1;
+    border: none;
+}</style></head><body><div class="keyboard" id="keyboard" style="position:absolute; bottom:0px; margin:none; width: 1710px; transform:translate(-200px -200px) scale(0.75);">
     <div id="underlay">
         <div id="whiteKeys">
             <!-- <div class="visual pianoNote" id="C_keyboard" data-colour="white" data-note="60" data-index="0"
@@ -798,4 +804,6 @@ document.querySelectorAll('#underlay #blackKeys .pianoNote').forEach(x=>{
     x.style.backgroundColor = 'black'
     //  x.style.opacity=0.2;
 });
-document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})</script></html>
+document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})
+
+//- document.querySelector('#overlay .pianoNote').style.opacity=0.5;</script></html>

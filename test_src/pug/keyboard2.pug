@@ -7,6 +7,14 @@ html(lang="en")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js")
         link(rel="stylesheet" href="style.css")
+        style.
+            .pianoNote{
+                transition:all 0.1s;
+            }
+            .active{
+                opacity:1;
+                border: none;
+            }
     body
         include keyboard_readymade.html
 
@@ -21,3 +29,5 @@ html(lang="en")
             //  x.style.opacity=0.2;
         });
         document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})
+
+        //- document.querySelector('#overlay .pianoNote').style.opacity=0.5;
