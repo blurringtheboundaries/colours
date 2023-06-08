@@ -1,1 +1,23 @@
-include keyboard_readymade.html
+// usual boilerplate
+doctype html
+html(lang="en")
+    head
+        title Colour test
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js")
+        link(rel="stylesheet" href="style.css")
+    body
+        include keyboard_readymade.html
+
+    script.
+        document.querySelectorAll('#underlay #whiteKeys .pianoNote').forEach(x=> {
+            x.style.backgroundColor = 'white';
+            x.style.border = 'solid 1px black';
+            // x.style.opacity=0.8;
+        });
+        document.querySelectorAll('#underlay #blackKeys .pianoNote').forEach(x=>{
+            x.style.backgroundColor = 'black'
+            //  x.style.opacity=0.2;
+        });
+        document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})
