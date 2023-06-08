@@ -8,6 +8,7 @@ import { noteColours, COLOURS } from '../src/synth_colours.js';
 import VoiceManager from './voice.js';
 import initDMX from './initDmx.js';
 import processQueue from './processQueue.js';
+import formatColour from './formatColour.js';
 
 window.MidiMapper = MidiMapper;
 window.colours = {
@@ -125,15 +126,7 @@ function getColour(array, index){
     return output;
 }
 
-function formatColour(array, offset = 0){
-    let {always_on} = colours;
-    offset = parseInt(offset)+1;
-    let output = array.map((x,i)=>`${i+offset}:${x}`).join('\n');
-    if(always_on){
-        output += `\n${offset - 1}:255\n`
-    }
-    return output;
-}
+
 
 function writeIntensities(){
     let {arduino, initFlag, intensities} = colours;
@@ -218,7 +211,7 @@ function update(){
     voices.voices.forEach((v,i)=>{
         console.log(v.active, intensities[getDmxIndex(i)])
         if(!v.active && intensities[getDmxIndex(i)]){
-            console.log(intensities[getDmxIndex(i)]])
+            console.log(intensities[getDmxIndex(i)]);
             colours.intensities[getDmxIndex(i)] -= 1;
             writeNoteColour(v.pitch, i);
         }
