@@ -4,8 +4,13 @@ function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag, lights} = colours;
     let colour, vel;
     if(note == -1){
-        if(colours.use_decay){return;}
-        colour = [0,0,0];
+        console.log('use_decay', colours.use_decay)
+        if(colours.use_decay){
+            return;
+        } else {
+            colour = [0,0,0];
+        }
+        
     } else {
         colour = getColour(noteColours.daze.led, note % 12);
         

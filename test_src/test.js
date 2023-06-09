@@ -12,6 +12,7 @@ import formatColour from './formatColour.js';
 import assignButtons from './assignButtons.js';
 import * as dat from 'dat.gui';
 import writeNoteColour from './writeNoteColour.js';
+import { v } from '../test/main.js';
 
 window.MidiMapper = MidiMapper;
 let colours = {
@@ -76,6 +77,7 @@ function initGui(){
         controls.multiplier = gui.add(colours, 'multiplier', 0, 1);
         controls.use_decay = gui.add(colours, 'use_decay');
         controls.hold = gui.add(colours, 'hold');
+        controls.always_write = gui.add(colours, 'always_write');
         controls.autoWrite = gui.add(colours, 'auto_write');
         controls.autoWrite.onChange((value)=>{
             if(value){
@@ -189,11 +191,10 @@ function autoWrite(value = true, interval = 30){
 }
 
 function selectiveDecrement(){
-    let {intensities, count} = colours;
-    let indices = Object.keys(intensities);
-    let index = indices[count % indices.length];
-    if(intensities[index] > 0){
-    }
+  let {voices, intensities, decays} = colours;
+  let voiceArray = voices.voices.filter(v=>!v.active);
+  console.log(voiceArray);
+  
 }
 
 function hold(value){
@@ -235,7 +236,7 @@ function writeQueue(){
 assignButtons();
 
 Object.assign(window,{
-    colours, getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui
+    colours, getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui, selectiveDecrement
 })
 
 export {initSocket, initDMX, colours, hold, initGui, processAll}

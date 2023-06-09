@@ -1,3 +1,5 @@
+import {colours, initGui} from './test.js';
+
 function getDmxIndex(number){
     let indices = Object.keys(colours.lights);
     return indices[number];
@@ -50,6 +52,7 @@ function initDMX(){
         updateScreenColours();
     }
     socket.listen();
+    initGui();
 }
 
 export default initDMX;
