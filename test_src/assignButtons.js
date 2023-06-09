@@ -1,4 +1,4 @@
-import {initSocket, initDMX, hold, colours, initGui} from './test.js';
+import {initSocket, initDMX, hold, initGui} from './test.js';
 
 function assignButtons(){
     document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
@@ -8,7 +8,7 @@ function assignButtons(){
 
     document.querySelectorAll('#hold').forEach(x=>{
         x.addEventListener('input', function(){
-        hold(this.checked);
+            hold(this.checked);
         })
     })
 }

@@ -6,6 +6,7 @@ class Voice{
     constructor(){
         Object.assign(this,{
             pitch:-1,
+            pitch_decay:-1,
             velocity:0,
             intensity:0,
             active:false
@@ -24,6 +25,7 @@ class Voice{
     off(){
         this.active = false;
         Object.assign(this,{
+            pitch_decay:this.pitch,
             pitch:-1,
             velocity:0
         })

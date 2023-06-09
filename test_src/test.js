@@ -73,13 +73,14 @@ let colours = {
 function initGui(){
     if(!window.gui) {
         window.gui = new dat.GUI();
+        window.gui.listen();
         let {gui} = window;
-        let {controls} = colours;
-        controls.multiplier = gui.add(colours, 'multiplier', 0, 1);
-        controls.use_decay = gui.add(colours, 'use_decay');
-        controls.hold = gui.add(colours, 'hold');
-        controls.always_write = gui.add(colours, 'always_write');
-        controls.autoWrite = gui.add(colours, 'auto_write');
+        let {controls} = window.colours;
+        controls.multiplier = gui.add(window.colours, 'multiplier', 0, 1);
+        controls.use_decay = gui.add(window.colours, 'use_decay');
+        controls.hold = gui.add(window.colours, 'hold');
+        controls.always_write = gui.add(window.colours, 'always_write');
+        controls.autoWrite = gui.add(window.colours, 'auto_write');
         controls.autoWrite.onChange((value)=>{
             if(value){
                 colours.interval = setInterval(writeQueue,colours.rate);
@@ -192,9 +193,11 @@ function autoWrite(value = true, interval = 30){
 }
 
 function selectiveDecrement(){
-  let {voices, intensities, decays} = colours;
-  let voiceArray = voices.voices.filter(v=>!v.active);
-  console.log(voiceArray);
+  let {voices, intensities, decays, count} = colours;
+  let voiceArray = voices.voices.filter(v=>!v.active && v.decay > 0);
+  voiceArray.forEach((v,i)=>{
+
+  })
   
 }
 
