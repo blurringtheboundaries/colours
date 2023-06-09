@@ -22,6 +22,7 @@ function initDMX(){
         let [channel, cc, value] = e;
         if(cc == 64){
             colours.pedal = value;
+            colours.decay_increment = Math.floor((value/-127)*6  + 8);
             if(value == 127){
                 colours.hold = true;
             } else if(colours.hold && value == 0) {

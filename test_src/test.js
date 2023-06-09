@@ -9,7 +9,7 @@ import VoiceManager from './voice.js';
 import initDMX from './initDmx.js';
 import processQueue from './processQueue.js';
 import formatColour from './formatColour.js';
-import assignButtons from './assignButtons.js';
+// import assignButtons from './assignButtons.js';
 import * as dat from 'dat.gui';
 import writeNoteColour from './writeNoteColour.js';
 import { v } from '../test/main.js';
@@ -63,6 +63,7 @@ let colours = {
     use_velocity:true,
     auto_write:false,
     use_decay:false,
+    decay_increment:10,
     queue: [],
     audio:{
         
@@ -178,7 +179,7 @@ function processAll(){
         }
         
     })
-    writeIntensities();
+    // writeIntensities();
     
     if(always_write){
         writeQueue();
@@ -186,7 +187,7 @@ function processAll(){
 }
 
 function autoWrite(value = true, interval = 30){
-    colours.always_write = value;
+    colours.always_write = !value;
     if(value){
         colours.interval = setInterval(writeQueue, interval);
     } else {
@@ -201,14 +202,20 @@ function selectiveDecrement(){
   if(voiceArray.length == 0){
     return;
   }
-  let index = counter % voiceArray.length;
-  console.log(index, voiceArray[index])
-  voiceArray[index].intensity -= 1;
-  if(voiceArray[index].pitch_decay >= 0){
-    writeNoteColour(voiceArray[index].pitch_decay, index);
-    writeNoteColour(-1, index);
-  
+//   let index = counter % voiceArray.length;
+  for(let index = 0; index < voiceArray.length; index++){
+    console.log(index, voiceArray[index])
+    voiceArray[index].intensity -= colours.decay_increment;
+    if(voiceArray[index].intensity < 0){
+        voiceArray[index].intensity = 0;
+        }
+    if(voiceArray[index].pitch_decay >= 0){
+        // writeNoteColour(voiceArray[index].pitch_decay, index);
+        writeNoteColour(-1, index);
+    
+    }
   }
+  
   
   processAll();
   
@@ -234,6 +241,7 @@ function update(){
     //     }
     //     console.log('intensities', intensities)
     // })
+    if(!colours.hold)selectiveDecrement();
     colours.counter++;
 }
 
@@ -249,6 +257,19 @@ function writeQueue(){
 }
 
 // go
+
+function assignButtons(){
+    document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
+    document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
+    document.querySelectorAll('#flush').forEach(x=>x.addEventListener('click', ()=>{colours.voices.flush()}));
+    document.querySelectorAll('#gui_init').forEach(x=>x.addEventListener('click', initGui));
+
+    document.querySelectorAll('#hold').forEach(x=>{
+        x.addEventListener('input', function(){
+            hold(this.checked);
+        })
+    })
+}
 
 assignButtons();
 
