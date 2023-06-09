@@ -14,6 +14,7 @@ import * as dat from 'dat.gui';
 
 window.MidiMapper = MidiMapper;
 let colours = {
+    rate:30,
     midi: new MidiMapper(),
     socket: new SocketMapper(),
     arduino: new SerialMapper(),
@@ -54,6 +55,7 @@ let colours = {
     always_on:true,
     always_write:true,
     use_velocity:true,
+    auto_write:false,
     use_decay:false,
     queue: [],
     audio:{
@@ -71,7 +73,16 @@ function initGui(){
         let {gui} = window;
         let {controls} = colours;
         controls.multiplier = gui.add(colours, 'multiplier', 0, 1);
-        controls.multiplier = gui.add(colours, 'use_decay');
+        controls.use_decay = gui.add(colours, 'use_decay');
+        controls.hold = gui.add(colours, 'hold');
+        controls.autoWrite = gui.add(colours, 'auto_write');
+        controls.autoWrite.onChange((value)=>{
+            if(value){
+                colours.interval = setInterval(writeQueue,colours.rate);
+            } else {
+                clearInterval(colours.interval);
+            }
+        })
         document.querySelectorAll('#gui_init').forEach(x=>x.style.display = 'none');
     } else {
         document.querySelectorAll('#gui_init').forEach(x=>x.style.display = 'none');
@@ -82,8 +93,7 @@ function initAudio(){
     colours.audio.mic = new Tone.UserMedia();
     colours.audio.meter = new Tone.Meter();
     colours.audio.mic.connect(colours.audio.meter);
-    colours.audio.mic.open().then(()=>{
-    });
+    colours.audio.mic.open().then(()=>{});
 }
 
 function initSocket(){
@@ -186,7 +196,7 @@ function processAll(){
 }
 
 function autoWrite(value = true, interval = 30){
-    colours.alwayws_write = value;
+    colours.always_write = value;
     if(value){
         colours.interval = setInterval(writeQueue, interval);
     } else {
