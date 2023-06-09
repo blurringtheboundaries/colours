@@ -11,6 +11,7 @@ import processQueue from './processQueue.js';
 import formatColour from './formatColour.js';
 import assignButtons from './assignButtons.js';
 import * as dat from 'dat.gui';
+import writeNoteColour from './writeNoteColour.js';
 
 window.MidiMapper = MidiMapper;
 let colours = {
@@ -151,25 +152,7 @@ function writeIntensities(){
     });
 }
 
-function writeNoteColour(note = 0, offset = 0){
-    let {arduino, initFlag, lights} = colours;
-    let colour, vel;
-    if(note == -1){
-        if(colours.use_decay){return;}
-        colour = [0,0,0];
-    } else {
-        colour = getColour(noteColours.daze.led, note % 12);
-        
-        let noteIndex = colours.voices.voices.findIndex(v=>v.pitch==note);
-        vel = colours.voices.voices[noteIndex].velocity;
-        console.log('intensity', vel);
-        colour = colour.map(x=>Math.floor(x*vel/127));
-    }
-    
-    // console.log('colour', colour)
-    colours.lights[Object.keys(lights)[offset]] = colour;
-    processAll();
- }
+
 
 function processAll(){
     let {queue, arduino, lights, audio, always_write} = colours;
@@ -255,4 +238,4 @@ Object.assign(window,{
     colours, getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui
 })
 
-export {initSocket, initDMX, colours, hold, initGui}
+export {initSocket, initDMX, colours, hold, initGui, processAll}
