@@ -795,15 +795,28 @@
     </div>
 </div>
 
-</body><script>document.querySelectorAll('#underlay #whiteKeys .pianoNote').forEach(x=> {
-    x.style.backgroundColor = 'white';
-    x.style.border = 'solid 1px black';
-    // x.style.opacity=0.8;
-});
-document.querySelectorAll('#underlay #blackKeys .pianoNote').forEach(x=>{
-    x.style.backgroundColor = 'black'
-    //  x.style.opacity=0.2;
-});
-document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})
+</body><script>  document.querySelectorAll('#underlay #whiteKeys .pianoNote').forEach(x=> {
+      x.style.backgroundColor = 'white';
+      x.style.border = 'solid 1px black';
+      // x.style.opacity=0.8;
+  });
+  document.querySelectorAll('#underlay #blackKeys .pianoNote').forEach(x=>{
+      x.style.backgroundColor = 'black'
+      //  x.style.opacity=0.2;
+  });
+  document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})
 
-//- document.querySelector('#overlay .pianoNote').style.opacity=0.5;</script></html>
+  //- document.querySelector('#overlay .pianoNote').style.opacity=0.5;
+  function loader(){
+  colours.socket.listen();
+  colours.socket.socket.on('midi', function(data){
+  console.log(data);
+  colours.socket.in.note = (e)=>{
+      document.querySelectorAll('.wedge').forEach((x,i)=>{
+        x.style.transition = 'opacity 0.5s';
+        x.style.opacity = (e[1]%12 == i) ? 1 : 0.2;
+      })
+      console.log(e[2]%12)
+    }
+  })
+}</script></html>

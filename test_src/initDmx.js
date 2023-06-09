@@ -24,10 +24,10 @@ function initDMX(){
             colours.pedal = value;
             colours.decay_increment = Math.floor((value/-127)*6  + 8);
             if(value == 127){
-                colours.hold = true;
+                // colours.hold = true;
             } else if(colours.hold && value == 0) {
                 voices.flush();
-                colours.hold = false;
+                // colours.hold = false;
                 updateScreenColours();
                 let voiceArray = voices.voices.map(v=>v.pitch);
                 voiceArray.forEach((v,i)=>{ 

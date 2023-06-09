@@ -31,3 +31,16 @@ html(lang="en")
         document.querySelectorAll('#overlay .pianoNote').forEach(x=>{x.style.opacity=0;})
 
         //- document.querySelector('#overlay .pianoNote').style.opacity=0.5;
+        function loader(){
+        colours.socket.listen();
+        colours.socket.socket.on('midi', function(data){
+        console.log(data);
+        colours.socket.in.note = (e)=>{
+            document.querySelectorAll('.wedge').forEach((x,i)=>{
+              x.style.transition = 'opacity 0.5s';
+              x.style.opacity = (e[1]%12 == i) ? 1 : 0.2;
+            })
+            console.log(e[2]%12)
+          }
+        })
+      }
