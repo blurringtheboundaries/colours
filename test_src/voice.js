@@ -7,6 +7,7 @@ class Voice{
         Object.assign(this,{
             pitch:-1,
             velocity:0,
+            intensity:0,
             active:false
         })
     }
@@ -15,7 +16,8 @@ class Voice{
         this.active = true;
         Object.assign(this,{
             pitch,
-            velocity
+            velocity, 
+            intensity:velocity
         })
     }
     
@@ -27,7 +29,6 @@ class Voice{
         })
     }
 }
-
 
 /**
  * Manage voices of synth for colour / sound. Quick and dirty attempt during gig prep.
