@@ -17,6 +17,7 @@ import { v } from '../test/main.js';
 window.MidiMapper = MidiMapper;
 let colours = {
     rate:30,
+    pedal:0,
     midi: new MidiMapper(),
     socket: new SocketMapper(),
     arduino: new SerialMapper(),
@@ -116,7 +117,7 @@ function decay(){
     let voiceArray = voices.voices;
     voiceArray.forEach(v=>{
         if(v.active){
-            v.decay = Math.max(v.decay - 1, 0);
+            v.decay = Math.max(v.decay -1, 0);
         }
     });
 }

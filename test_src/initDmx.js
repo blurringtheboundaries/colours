@@ -19,6 +19,7 @@ function initDMX(){
     socket.in.cc = (e) => {
         let [channel, cc, value] = e;
         if(cc == 64){
+            colours.pedal = value;
             if(value == 127){
                 colours.hold = true;
             } else if(colours.hold && value == 0) {
