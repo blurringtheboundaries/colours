@@ -9,6 +9,11 @@ function writeNoteColour(note = 0, offset = 0){
             // let item = colours.voices.voices.find(x=>x.address == colours.dmx.addresses[offset]);
             let item = colours.voices.voices[offset];
             note = item.pitch_decay;
+            if(note == -1){
+                // this needs work
+                return;
+            }
+            console.log('note', note, 'item', item);
             console.log('use_decay', colours.use_decay)
             colour = getColour(noteColours.daze.led, note % 12);
             // let noteIndex = colours.voices.voices.findIndex(v=>v.pitch==note);

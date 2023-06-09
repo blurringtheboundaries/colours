@@ -204,7 +204,11 @@ function selectiveDecrement(){
   let index = counter % voiceArray.length;
   console.log(index, voiceArray[index])
   voiceArray[index].intensity -= 1;
-  writeNoteColour(voiceArray[index].pitch_decay, index);
+  if(voiceArray[index].pitch_decay >= 0){
+    writeNoteColour(voiceArray[index].pitch_decay, index);
+    writeNoteColour(-1, index);
+  
+  }
   
   processAll();
   
@@ -221,15 +225,15 @@ function getDmxIndex(number){
 
 function update(){
     let {arduino, initFlag, lights, intensities, voices} = colours;
-    voices.voices.forEach((v,i)=>{
-        console.log(v.active, intensities[getDmxIndex(i)])
-        if(!v.active && intensities[getDmxIndex(i)]){
-            console.log(intensities[getDmxIndex(i)]);
-            colours.intensities[getDmxIndex(i)] -= 1;
-            writeNoteColour(v.pitch, i);
-        }
-        console.log('intensities', intensities)
-    })
+    // voices.voices.forEach((v,i)=>{
+    //     console.log(v.active, intensities[getDmxIndex(i)])
+    //     if(!v.active && intensities[getDmxIndex(i)]){
+    //         console.log(intensities[getDmxIndex(i)]);
+    //         colours.intensities[getDmxIndex(i)] -= 1;
+    //         writeNoteColour(v.pitch, i);
+    //     }
+    //     console.log('intensities', intensities)
+    // })
     colours.counter++;
 }
 
