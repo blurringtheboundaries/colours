@@ -4,9 +4,17 @@ function writeNoteColour(note = 0, offset = 0){
     let {arduino, initFlag, lights} = colours;
     let colour, vel;
     if(note == -1){
-        console.log('use_decay', colours.use_decay)
-        if(colours.use_decay){
-            return;
+        
+        if(colours.use_decay && colours.voices.voices[offset].intensity >= 0){
+            // let item = colours.voices.voices.find(x=>x.address == colours.dmx.addresses[offset]);
+            let item = colours.voices.voices[offset];
+            note = item.pitch_decay;
+            console.log('use_decay', colours.use_decay)
+            colour = getColour(noteColours.daze.led, note % 12);
+            // let noteIndex = colours.voices.voices.findIndex(v=>v.pitch==note);
+            // vel = colours.voices.voices[noteIndex].intensity;
+            vel = item.intensity;
+            colour = colour.map(x=>Math.floor(x*vel/127));
         } else {
             colour = [0,0,0];
         }

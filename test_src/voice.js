@@ -9,7 +9,8 @@ class Voice{
             pitch_decay:-1,
             velocity:0,
             intensity:0,
-            active:false
+            active:false,
+            address:-1,
         })
     }
 
@@ -40,11 +41,15 @@ class Voice{
  */
 
 export default class VoiceManager{
-    constructor(numberOfVoices = 4, stealing = true){
+    constructor(numberOfVoices = 4, stealing = true, addresses=undefined){
         this.stealing = stealing;
         this.voices = [];
+        
         for(let i = 0; i < numberOfVoices; i++){
             this.voices.push(new Voice());
+        }
+        if(addresses && addresses.length >= numberOfVoices){
+            this.assignAddresses(addresses);
         }
     }
 
@@ -120,5 +125,11 @@ export default class VoiceManager{
     flush(){
         this.voices.forEach(v=>v.off());
     }
-
+    assignAddresses(arr){
+        this.voices.forEach((v,i)=>{
+            console.log('assigning address', i, arr[i])
+            v.address = arr[i];
+        })
+        console.log('addresses assigned', this.voices, arr)
+    }
 }

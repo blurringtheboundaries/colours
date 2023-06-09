@@ -16,6 +16,9 @@ import { v } from '../test/main.js';
 
 window.MidiMapper = MidiMapper;
 let colours = {
+    dmx:{
+        addresses:[1,11,22,33]
+    },
     rate:30,
     pedal:0,
     midi: new MidiMapper(),
@@ -193,11 +196,17 @@ function autoWrite(value = true, interval = 30){
 }
 
 function selectiveDecrement(){
-  let {voices, intensities, decays, count} = colours;
-  let voiceArray = voices.voices.filter(v=>!v.active && v.decay > 0);
-  voiceArray.forEach((v,i)=>{
-
-  })
+  let {voices, intensities, decays, counter} = colours;
+  let voiceArray = voices.voices.filter(v=>!v.active && v.intensity > 0);
+  if(voiceArray.length == 0){
+    return;
+  }
+  let index = counter % voiceArray.length;
+  console.log(index, voiceArray[index])
+  voiceArray[index].intensity -= 1;
+  writeNoteColour(voiceArray[index].pitch_decay, index);
+  
+  processAll();
   
 }
 
@@ -221,7 +230,7 @@ function update(){
         }
         console.log('intensities', intensities)
     })
-    colours.count++;
+    colours.counter++;
 }
 
 function writeQueue(){

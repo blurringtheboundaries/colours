@@ -14,8 +14,10 @@ function updateScreenColours(){
 }
 
 function initDMX(){
-    let {arduino, socket, voices} = window.colours;
+    let {arduino, socket, voices, dmx} = window.colours;
     arduino.connect();
+    console.log('dmx', dmx, dmx.addresses)
+    voices.assignAddresses(dmx.addresses)
     socket.in.cc = (e) => {
         let [channel, cc, value] = e;
         if(cc == 64){
