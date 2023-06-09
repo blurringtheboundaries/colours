@@ -9,10 +9,11 @@ import VoiceManager from './voice.js';
 import initDMX from './initDmx.js';
 import processQueue from './processQueue.js';
 import formatColour from './formatColour.js';
+import assignButtons from './assignButtons.js';
 import * as dat from 'dat.gui';
 
 window.MidiMapper = MidiMapper;
-window.colours = {
+let colours = {
     midi: new MidiMapper(),
     socket: new SocketMapper(),
     arduino: new SerialMapper(),
@@ -60,11 +61,21 @@ window.colours = {
     },
     multiplier: 1,
     hold: false,
-    counter: 0
+    counter: 0,
+    controls:{}
 }
 
 function initGui(){
-    window.gui = new dat.GUI();
+    if(!window.gui) {
+        window.gui = new dat.GUI();
+        let {gui} = window;
+        let {controls} = colours;
+        controls.multiplier = gui.add(colours, 'multiplier', 0, 1);
+        controls.multiplier = gui.add(colours, 'use_decay');
+        document.querySelectorAll('#gui_init').forEach(x=>x.style.display = 'none');
+    } else {
+        document.querySelectorAll('#gui_init').forEach(x=>x.style.display = 'none');
+    }
 }
 
 function initAudio(){
@@ -96,20 +107,6 @@ function decay(){
         }
     });
 }
-
-function assignButtons(){
-    document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
-    document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
-    document.querySelectorAll('#flush').forEach(x=>x.addEventListener('click', colours.voices.flush));
-
-    document.querySelectorAll('#hold').forEach(x=>{
-        x.addEventListener('input', function(){
-        hold(this.checked);
-        })
-    })
-}
-
-
 
 /**
  * 
@@ -188,8 +185,6 @@ function processAll(){
     }
 }
 
-
-
 function autoWrite(value = true, interval = 30){
     colours.alwayws_write = value;
     if(value){
@@ -247,5 +242,7 @@ function writeQueue(){
 assignButtons();
 
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui
+    colours, getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui
 })
+
+export {initSocket, initDMX, colours, hold, initGui}
