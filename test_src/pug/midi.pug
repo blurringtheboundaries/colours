@@ -13,12 +13,16 @@ html(lang="en")
             button#socketInit() listen...
             button#dmxInit() dmx connect
             button#flush flush
-            label(for="autoWrite") autoWrite
-            input#autoWrite(type='checkbox')
-            label(for="always_on") always_on
-            input#always_on(type='checkbox')
-            label(for="hold") hold
-            input#ignore_off(type='checkbox')
+            .control
+                label(for="autoWrite") autoWrite
+                input#autoWrite(type='checkbox')
+            .control
+                label(for="always_on") always_on
+                input#always_on(type='checkbox')
+            .control
+                label(for="hold") hold
+                input#ignore_off(type='checkbox')
+            .memo
             code colours.use_decay = false;
         .testBars 
             .testBar 0

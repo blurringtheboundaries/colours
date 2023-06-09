@@ -9,6 +9,7 @@ import VoiceManager from './voice.js';
 import initDMX from './initDmx.js';
 import processQueue from './processQueue.js';
 import formatColour from './formatColour.js';
+import * as dat from 'dat.gui';
 
 window.MidiMapper = MidiMapper;
 window.colours = {
@@ -58,7 +59,12 @@ window.colours = {
         
     },
     multiplier: 1,
-    hold: false
+    hold: false,
+    counter: 0
+}
+
+function initGui(){
+    window.gui = new dat.GUI();
 }
 
 function initAudio(){
@@ -126,8 +132,6 @@ function getColour(array, index){
     return output;
 }
 
-
-
 function writeIntensities(){
     let {arduino, initFlag, intensities} = colours;
     let intensity;
@@ -138,7 +142,6 @@ function writeIntensities(){
             colours.intensities_last[index] = intensity;
         }
     });
-    
 }
 
 function writeNoteColour(note = 0, offset = 0){
@@ -156,8 +159,7 @@ function writeNoteColour(note = 0, offset = 0){
         colour = colour.map(x=>Math.floor(x*vel/127));
     }
     
-    
-    console.log('colour', colour)
+    // console.log('colour', colour)
     colours.lights[Object.keys(lights)[offset]] = colour;
     processAll();
  }
@@ -184,8 +186,9 @@ function processAll(){
     if(always_write){
         writeQueue();
     }
-
 }
+
+
 
 function autoWrite(value = true, interval = 30){
     colours.alwayws_write = value;
@@ -195,6 +198,14 @@ function autoWrite(value = true, interval = 30){
         clearInterval(colours.interval);
     }
     
+}
+
+function selectiveDecrement(){
+    let {intensities, count} = colours;
+    let indices = Object.keys(intensities);
+    let index = indices[count % indices.length];
+    if(intensities[index] > 0){
+    }
 }
 
 function hold(value){
@@ -217,6 +228,7 @@ function update(){
         }
         console.log('intensities', intensities)
     })
+    colours.count++;
 }
 
 function writeQueue(){
@@ -230,11 +242,10 @@ function writeQueue(){
     }
 }
 
-
 // go
 
 assignButtons();
 
 Object.assign(window,{
-    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update
+    getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui
 })
