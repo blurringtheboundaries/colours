@@ -1,5 +1,6 @@
 import MidiMapper from 'midi-mapper';
 import SocketMapper from '@matthewscharles/socket-mapper';
+import { map, clip } from '@matthewscharles/cm-toolbox';
 import SerialMapper from 'serial-mapper';
 import MultitouchMapper from '@matthewscharles/multitouch-mapper';
 import { dmxWrite } from './dmx.js';
@@ -82,6 +83,7 @@ function initGui(){
         controls.hold = gui.add(window.colours, 'hold');
         controls.always_write = gui.add(window.colours, 'always_write');
         controls.autoWrite = gui.add(window.colours, 'auto_write');
+        // controls.addresses = gui.add(window.colours.dmx.addresses);
         controls.autoWrite.onChange((value)=>{
             if(value){
                 colours.interval = setInterval(writeQueue,colours.rate);
@@ -259,7 +261,22 @@ function assignButtons(){
 assignButtons();
 
 Object.assign(window,{
-    colours, getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui, selectiveDecrement
+    colours, 
+    getColour, 
+    formatColour, 
+    writeNoteColour, 
+    start, 
+    noteColours, 
+    processQueue, 
+    processAll, 
+    autoWrite, 
+    writeQueue, 
+    initAudio, 
+    update, 
+    initGui, 
+    selectiveDecrement,
+    map,
+    clip
 })
 
 // export {initSocket, initDMX, colours, hold, initGui, processAll}
