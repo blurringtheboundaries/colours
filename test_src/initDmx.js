@@ -1,5 +1,5 @@
 // import {colours, initGui} from './test.js';
-
+import {map, constrain} from '@matthewscharles/cm-toolbox';
 function getDmxIndex(number){
     let indices = Object.keys(colours.lights);
     return indices[number];
@@ -44,7 +44,7 @@ function initDMX(){
                 return;
             }
         } else {
-            
+            velocity = map(velocity, colours.velocity_min, 127, 0, 127, true, true);
         }
         let voiceNumber = voices.update(pitch, velocity, false);
         // console.log('dmx voice number', voiceNumber, getDmxIndex(voiceNumber))

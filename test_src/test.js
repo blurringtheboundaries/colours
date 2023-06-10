@@ -59,6 +59,7 @@ let colours = {
     always_on:true,
     always_write:true,
     use_velocity:true,
+    velocity_min:30,
     auto_write:false,
     use_decay:false,
     decay_increment:10,
@@ -83,6 +84,7 @@ function initGui(){
         controls.hold = gui.add(window.colours, 'hold');
         controls.always_write = gui.add(window.colours, 'always_write');
         controls.autoWrite = gui.add(window.colours, 'auto_write');
+        controls.velocity_min = gui.add(window.colours, 'velocity_min', 0, 127);
         // controls.addresses = gui.add(window.colours.dmx.addresses);
         controls.autoWrite.onChange((value)=>{
             if(value){
