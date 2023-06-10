@@ -10,7 +10,7 @@ import initDMX from './initDmx.js';
 import processQueue from './processQueue.js';
 import formatColour from './formatColour.js';
 // import assignButtons from './assignButtons.js';
-import * as dat from 'dat.gui';
+// import * as dat from 'dat.gui'; 
 import writeNoteColour from './writeNoteColour.js';
 import { v } from '../test/main.js';
 

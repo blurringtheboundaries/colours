@@ -1,4 +1,4 @@
-import {initSocket, initDMX, hold, initGui} from './test.js';
+// import {initSocket, initDMX, hold, initGui} from './test.js';
 
 function assignButtons(){
     document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));

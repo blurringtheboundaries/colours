@@ -1,4 +1,4 @@
-import {colours, initGui} from './test.js';
+// import {colours, initGui} from './test.js';
 
 function getDmxIndex(number){
     let indices = Object.keys(colours.lights);

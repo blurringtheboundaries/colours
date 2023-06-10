@@ -1,7 +1,7 @@
 {
   "name": "colours",
   "version": "1.0.1",
-  "description": "Colour project with Joel Daze",
+  "description": "Colour project with Joel Dazé",
   "main": "colours.js",
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@matthewscharles/cm-toolbox": "^1.1.20",
+    "@matthewscharles/multitouch-mapper": "^1.0.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
@@ -26,7 +27,5 @@
     "webpack": "^5.85.0",
     "webpack-cli": "^5.1.3"
   },
-  "dependencies": {
-    "@matthewscharles/multitouch-mapper": "^1.0.1"
-  }
+  "dependencies": {}
 }
