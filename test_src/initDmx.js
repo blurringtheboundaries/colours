@@ -24,7 +24,7 @@ function initDMX(){
             colours.pedal = value;
             colours.decay_increment = Math.floor((value/-127)*6  + 8);
             if(value == 127){
-                // colours.hold = true;
+                colours.decay_increment = 0.1;
             } else if(colours.hold && value == 0) {
                 voices.flush();
                 // colours.hold = false;
@@ -44,7 +44,8 @@ function initDMX(){
                 return;
             }
         } else {
-            velocity = map(velocity, colours.velocity_min, 127, 0, 127, true, true);
+            // if(velocity < )
+            velocity = map(velocity, colours.velocity_min, 127, 1, 127, true, true);
         }
         let voiceNumber = voices.update(pitch, velocity, false);
         // console.log('dmx voice number', voiceNumber, getDmxIndex(voiceNumber))

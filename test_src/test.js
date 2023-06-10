@@ -67,6 +67,7 @@ let colours = {
     audio:{
         
     },
+    affect: false,
     multiplier: 1,
     hold: false,
     counter: 0,
@@ -85,6 +86,7 @@ function initGui(){
         controls.always_write = gui.add(window.colours, 'always_write');
         controls.autoWrite = gui.add(window.colours, 'auto_write');
         controls.velocity_min = gui.add(window.colours, 'velocity_min', 0, 127);
+        controls.affect = gui.add(window.colours, 'affect')
         // controls.addresses = gui.add(window.colours.dmx.addresses);
         controls.autoWrite.onChange((value)=>{
             if(value){
@@ -169,6 +171,7 @@ function processAll(){
     if(audio.meter){
         duck = Tone.dbToGain(audio.meter.getLevel())*1;
         if(duck > 1){ duck=1};
+        if(affect){console.log('affect',duck)}
     }
  
     Object.entries(lights).forEach(([index, colour])=>{
