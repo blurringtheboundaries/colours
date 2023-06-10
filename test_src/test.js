@@ -1,6 +1,6 @@
 import MidiMapper from 'midi-mapper';
 import SocketMapper from '@matthewscharles/socket-mapper';
-import { map, clip } from '@matthewscharles/cm-toolbox';
+import { map, constrain } from '@matthewscharles/cm-toolbox';
 import SerialMapper from 'serial-mapper';
 import MultitouchMapper from '@matthewscharles/multitouch-mapper';
 import { dmxWrite } from './dmx.js';
@@ -276,7 +276,7 @@ Object.assign(window,{
     initGui, 
     selectiveDecrement,
     map,
-    clip
+    constrain
 })
 
 // export {initSocket, initDMX, colours, hold, initGui, processAll}
