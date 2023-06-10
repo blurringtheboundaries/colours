@@ -14,7 +14,7 @@ import formatColour from './formatColour.js';
 import writeNoteColour from './writeNoteColour.js';
 import { v } from '../test/main.js';
 
-window.MidiMapper = MidiMapper;
+// window.MidiMapper = MidiMapper;
 let colours = {
     dmx:{
         addresses:[1,11,22,33]
@@ -277,4 +277,4 @@ Object.assign(window,{
     colours, getColour, formatColour, writeNoteColour, start, noteColours, processQueue, processAll, autoWrite, writeQueue, initAudio, update, initGui, selectiveDecrement
 })
 
-export {initSocket, initDMX, colours, hold, initGui, processAll}
+// export {initSocket, initDMX, colours, hold, initGui, processAll}
