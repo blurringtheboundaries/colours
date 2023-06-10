@@ -10,12 +10,9 @@ import initDMX from './initDmx.js';
 import processQueue from './processQueue.js';
 import formatColour from './formatColour.js';
 // import assignButtons from './assignButtons.js';
-// import * as dat from 'dat.gui'; 
+import * as dat from 'dat.gui'; 
 import writeNoteColour from './writeNoteColour.js';
-import { v } from '../test/main.js';
-
-// window.MidiMapper = MidiMapper;
-let colours = {
+window.colours = {
     dmx:{
         addresses:[1,11,22,33]
     },
@@ -161,7 +158,6 @@ function writeIntensities(){
 }
 
 
-
 function processAll(){
     let {queue, arduino, lights, audio, always_write} = colours;
     
@@ -179,7 +175,6 @@ function processAll(){
         }
         
     })
-    // writeIntensities();
     
     if(always_write){
         writeQueue();
@@ -216,7 +211,6 @@ function selectiveDecrement(){
     }
   }
   
-  
   processAll();
   
 }
@@ -232,15 +226,6 @@ function getDmxIndex(number){
 
 function update(){
     let {arduino, initFlag, lights, intensities, voices} = colours;
-    // voices.voices.forEach((v,i)=>{
-    //     console.log(v.active, intensities[getDmxIndex(i)])
-    //     if(!v.active && intensities[getDmxIndex(i)]){
-    //         console.log(intensities[getDmxIndex(i)]);
-    //         colours.intensities[getDmxIndex(i)] -= 1;
-    //         writeNoteColour(v.pitch, i);
-    //     }
-    //     console.log('intensities', intensities)
-    // })
     if(!colours.hold)selectiveDecrement();
     colours.counter++;
 }

@@ -6,11 +6,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm link @matthewscharles/socket-mapper && npm link serial-mapper && webpack ./test_src/test.js -o ./test && babel keyboard/src -o keyboard/build/pitch_colour.js; node compile.js; jsdoc -c jsdoc.json",
+    "build": "npm link @matthewscharles/socket-mapper && npm link serial-mapper && webpack ./test_src/test.js -o ./test && node compile.js;",
     "doc": "jsdoc -c jsdoc.json"
   },
   "author": "Charles Matthews",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@matthewscharles/cm-toolbox": "^1.1.20",
     "@matthewscharles/multitouch-mapper": "^1.0.1",
