@@ -12,7 +12,7 @@ import formatColour from './formatColour.js';
 // import assignButtons from './assignButtons.js';
 import * as dat from 'dat.gui'; 
 import writeNoteColour from './writeNoteColour.js';
-window.colours = {
+let colours = {
     dmx:{
         addresses:[1,11,22,33]
     },
@@ -74,7 +74,7 @@ window.colours = {
 function initGui(){
     if(!window.gui) {
         window.gui = new dat.GUI();
-        window.gui.listen();
+        // window.gui.listen();
         let {gui} = window;
         let {controls} = window.colours;
         controls.multiplier = gui.add(window.colours, 'multiplier', 0, 1);
