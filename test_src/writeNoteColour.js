@@ -15,7 +15,7 @@ function writeNoteColour(note = 0, offset = 0){
             }
             console.log('note', note, 'item', item);
             console.log('use_decay', colours.use_decay)
-            colour = getColour(noteColours.daze.hex, note % 12);
+            colour = getColour(noteColours.daze.led, note % 12);
             // let noteIndex = colours.voices.voices.findIndex(v=>v.pitch==note);
             // vel = colours.voices.voices[noteIndex].intensity;
             vel = item.intensity;
