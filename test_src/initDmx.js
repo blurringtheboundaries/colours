@@ -21,6 +21,7 @@ function initDMX(){
     socket.in.cc = (e) => {
         let [channel, cc, value] = e;
         if(cc == 64){
+            // sustain; this may interfere with other assignments and we need to check if it's common for pedals to be on/off or variable beyond Joel's keyboard...
             colours.pedal = value;
             colours.decay_increment = Math.floor((value/-127)*6  + 8);
             if(value == 127){
@@ -35,6 +36,8 @@ function initDMX(){
                 });
                 processAll();
             }
+        } else if(cc < 12){
+            console.log('cc', cc, value);
         }
     }
     socket.in.note = (e)=>{

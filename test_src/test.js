@@ -121,7 +121,7 @@ function initSocket(){
 }
 
 function decay(){
-    let {voices, decays} = colours;
+    let { voices } = colours;
     let voiceArray = voices.voices;
     voiceArray.forEach(v=>{
         if(v.active){
@@ -138,6 +138,7 @@ function decay(){
  */
 
 function getColour(array, index){
+    
     let output = array[index];
     if(output[0] == '#'){
         output = output.slice(1);
@@ -152,8 +153,8 @@ function getColour(array, index){
 }
 
 function writeIntensities(){
-    let {arduino, initFlag, intensities} = colours;
-    let intensity;
+    let { intensities } = colours;
+    
     Object.entries(intensities).forEach(([index, intensity])=>{
         if(intensity == colours.intensities_last[index]){
         } else {
@@ -165,7 +166,7 @@ function writeIntensities(){
 
 
 function processAll(){
-    let {queue, arduino, lights, audio, always_write} = colours;
+    let { lights, audio, always_write } = colours;
     
     let duck;
     if(audio.meter){
@@ -180,7 +181,6 @@ function processAll(){
             colours.queue.push(formatColour(colour, index));
             colours.lights_last[index] = colour;
         }
-        
     })
     
     if(always_write){
@@ -201,10 +201,11 @@ function autoWrite(value = true, interval = 30){
 function selectiveDecrement(){
   let {voices, intensities, decays, counter} = colours;
   let voiceArray = voices.voices.filter(v=>!v.active && v.intensity > 0);
+  
   if(voiceArray.length == 0){
     return;
   }
-//   let index = counter % voiceArray.length;
+    //   let index = counter % voiceArray.length;
   for(let index = 0; index < voiceArray.length; index++){
     console.log(index, voiceArray[index])
     voiceArray[index].intensity -= colours.decay_increment;
@@ -232,7 +233,6 @@ function getDmxIndex(number){
 }
 
 function update(){
-    let {arduino, initFlag, lights, intensities, voices} = colours;
     if(!colours.hold)selectiveDecrement();
     colours.counter++;
 }
@@ -251,11 +251,17 @@ function writeQueue(){
 // go
 
 function assignButtons(){
-    document.querySelectorAll('#socketInit').forEach(x=>x.addEventListener('click', initSocket));
-    document.querySelectorAll('#dmxInit').forEach(x=>x.addEventListener('click', initDMX));
-    document.querySelectorAll('#flush').forEach(x=>x.addEventListener('click', ()=>{colours.voices.flush()}));
-    document.querySelectorAll('#gui_init').forEach(x=>x.addEventListener('click', initGui));
+    let assignments = {
+        'socketInit': initSocket,
+        'dmxInit': initDMX,
+        'flush': ()=>{colours.voices.flush()},
+        'gui_init': initGui,
+    }
 
+    Object.entries(assignments).forEach(([id, func])=>{
+        document.querySelectorAll(`#${id}`).forEach(x=>x.addEventListener('click', func));
+    })
+    
     document.querySelectorAll('#hold').forEach(x=>{
         x.addEventListener('input', function(){
             hold(this.checked);
