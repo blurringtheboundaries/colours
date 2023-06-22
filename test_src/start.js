@@ -18,7 +18,6 @@ function start(){
     // midi mapping for our custom boards (sensors)
     for(let i=0; i<6; i++){
         midi.map[15].cc[i] = function(value){
-            console.log('cc', i, value)
             socket.emitCC(15, i, value);
         }
     }

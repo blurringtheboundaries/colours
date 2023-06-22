@@ -20,7 +20,6 @@ function initDMX(){
     voices.assignAddresses(dmx.addresses)
     socket.in.cc = (e) => {
         let [channel, cc, value] = e;
-        console.log(channel, cc, value);
         if(cc == 64){
             // sustain; this may interfere with other assignments and we need to check if it's common for pedals to be on/off or variable beyond Joel's keyboard...
             colours.pedal = value;
@@ -37,7 +36,8 @@ function initDMX(){
                 });
                 processAll();
             }
-        } else if(cc < 12){
+        } else if(cc < 12 && channel == 15){
+            // specific to our custom board
             console.log('cc', cc, value);
         }
     }
