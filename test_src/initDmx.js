@@ -20,8 +20,13 @@ function initDMX(){
     voices.assignAddresses(dmx.addresses)
     socket.in.cc = (e) => {
         let [channel, cc, value] = e;
-        if(cc == 64){
-            // sustain; this may interfere with other assignments and we need to check if it's common for pedals to be on/off or variable beyond Joel's keyboard...
+        if(cc < 12 && channel == 15){
+            // specific to our custom board -- channel 15, cc 0-5
+            // touch board is channels 1-12, cc 59 - 48 (I think this is based on the original touch board mapping)
+            console.log('cc', cc, value);
+        } else if(cc == 64){
+            // sustain
+            // this may interfere with other assignments and we need to check if it's common for pedals to be on/off or variable beyond Joel's keyboard...
             colours.pedal = value;
             colours.decay_increment = Math.floor((value/-127)*6  + 8);
             if(value == 127){
@@ -36,10 +41,7 @@ function initDMX(){
                 });
                 processAll();
             }
-        } else if(cc < 12 && channel == 15){
-            // specific to our custom board
-            console.log('cc', cc, value);
-        }
+        } 
     }
     socket.in.note = (e)=>{
         let [channel, pitch, velocity] = e;
