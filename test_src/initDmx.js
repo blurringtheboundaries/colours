@@ -5,6 +5,10 @@ function getDmxIndex(number){
     return indices[number];
 }
 
+/**
+ * @name updateScreenColours
+ */
+
 function updateScreenColours(){
     let {voices} = window.colours;
     let voiceArray = voices.voices;
@@ -12,6 +16,10 @@ function updateScreenColours(){
         x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
     })   
 }
+
+/**
+ * @name writeNoteColour
+ */
 
 function initDMX(){
     let {arduino, socket, voices, dmx} = window.colours;

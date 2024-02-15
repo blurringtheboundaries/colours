@@ -1,3 +1,10 @@
+/**
+ * Format an array of colours into a string
+ * @param {*} array 
+ * @param {*} offset 
+ * @returns {string} 
+ */
+
 function formatColour(array, offset = 0){
     let {always_on} = colours;
     offset = parseInt(offset)+1;

@@ -1,6 +1,8 @@
 function start(){
     let {midi, socket, voices} = window.colours;
+    
     colours.synth = new Tone.PolySynth(voices.polyphony, Tone.Synth).toMaster();
+    
     let id = Math.random().toString(36).slice(2);
     midi.map[0].noteRange['0,127'] = function(pitch, velocity){
         let voiceArray = voices.update(pitch, velocity, true);
@@ -11,6 +13,7 @@ function start(){
  
         socket.emitNote(0, pitch, velocity);
     };
+    
     midi.map[0].cc[64] = function(value){
         socket.emitCC(0, 64, value);
     }

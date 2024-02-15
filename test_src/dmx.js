@@ -1,3 +1,7 @@
+/**
+ * current assignments for our hardware
+ */
+
 const assignment = {
     lx:{
         red:5,
