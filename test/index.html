@@ -442,7 +442,7 @@
         colours.touch.setAction('.wedge').listen();
         document.addEventListener('touch-pickup',(e)=>{
           let {type, id, element} = e.detail;
-          console.log(type, id);
+          // console.log(type, id);
           Tone.start();
           let note = parseInt(id.split('_')[1]) + 60;
           if(type =='start' || type == 'enter'){
