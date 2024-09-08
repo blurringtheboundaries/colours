@@ -3,6 +3,7 @@
  */
 
 class Voice{
+    
     constructor(){
         Object.assign(this,{
             pitch:-1,
@@ -42,6 +43,7 @@ class Voice{
  */
 
 export default class VoiceManager{
+    
     constructor(numberOfVoices = 4, stealing = true, addresses=undefined){
         this.stealing = stealing;
         this.voices = [];
@@ -60,6 +62,7 @@ export default class VoiceManager{
      * @param {*} velocity 
      * @returns {number|boolean} the voice number or false if no voice available
      */
+    
     update(pitch, velocity, outputAll = false){
         let activeVoices = this.voices.filter(v=>v.active);
         let voice = this.voices.find(v=>v.pitch == pitch);
@@ -126,6 +129,7 @@ export default class VoiceManager{
     flush(){
         this.voices.forEach(v=>v.off());
     }
+    
     assignAddresses(arr){
         this.voices.forEach((v,i)=>{
             console.log('assigning address', i, arr[i])
@@ -133,4 +137,5 @@ export default class VoiceManager{
         })
         console.log('addresses assigned', this.voices, arr)
     }
+    
 }

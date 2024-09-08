@@ -17,22 +17,27 @@ var Keyboard = function Keyboard() {
         className: "keyboard",
         id: id
     });
+    
     var divs = ["overlay", "underlay", "whiteKeys", "blackKeys"];
     divs.forEach(function (item) {
         _this[item] = cm.create("div", { id: item });
     });
+    
     this.id = id;
     this.keys = this.populate(numKeys);
     this.keys.forEach(function (key) {
         return _this.underlay.appendChild(key);
     });
+    
     this.element.appendChild(this.underlay);
     this.element.appendChild(this.overlay);
     this.overlay.appendChild(this.whiteKeys);
     this.overlay.appendChild(this.blackKeys);
     this.elementSetup();
+    
     var width = this.whiteKeys.children.length * measurements.white;
     this.element.style.width = width + "px";
+    
     return this;
 };
 
@@ -48,6 +53,7 @@ Keyboard.prototype.populate = function () {
             id: noteNames[i % 12].replace(" ", "") + "_" + this.id
         });
     }
+    
     return outputArray;
 };
 
@@ -148,7 +154,7 @@ var getHexFromColour = function getHexFromColour(colourName) {
 /**
  * HTML piano keyboard
  * Charles Matthews (Blurring the Boundaries Arts) 2022
- * Additional colour features in collaboration with Joel Daze
+ * Additional colour features in collaboration with Joel Dazé
  */
 
 var measurements = {

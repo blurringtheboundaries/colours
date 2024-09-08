@@ -383,8 +383,6 @@ const setPresetIcons = function () {
     });
 };
 
-
-
 /**
  * Basic synth for testing purposes..
  */
@@ -557,9 +555,6 @@ Keyboard.prototype.elementSetup = function () {
         target.appendChild(cloneNote);
     });
 };
-
-
-
 
 // TODO: add octave shift button
 

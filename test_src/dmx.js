@@ -11,6 +11,7 @@ const assignment = {
         intensity:4
 
     },
+    
     ldj:{
         red:1,
         green:2,
@@ -52,4 +53,4 @@ function dmxWrite(unit, offset, channel, value){
     serial.write(`${channel} ${value}\n`);
 }
 
-export {lx, ldj, dmxWrite}
+export { lx, ldj, dmxWrite }

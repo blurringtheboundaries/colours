@@ -11,11 +11,11 @@ let jc = [
     [0, 179, 77],
     [3, 179, 0],
     [179, 155, 0]
-]
+];
+
 let output = '';
 jc.forEach((x,i)=>{
     x.forEach((channel,i)=>{
-        // console.log(channel/255)
         channel /= 255;
         output+= Math.round(channel*100)/100;
         if(i<2)output+=' '

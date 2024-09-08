@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-let jc = [
+const jc = [
     [179, 12, 0],
     [179, 18, 0],
     [179, 0, 0],
@@ -15,7 +15,7 @@ let jc = [
     [179, 155, 0]
 ]
 
-let rgbVals = [
+const rgbVals = [
     [ 127, 0, 255 ], [ 0, 127, 255 ],
     [ 0, 0, 255 ],   [ 0, 255, 255 ],
     [ 0, 255, 0 ],   [ 127, 255, 0 ],
@@ -24,7 +24,7 @@ let rgbVals = [
     [ 255, 0, 0 ],   [ 255, 0, 127 ]
   ]
 
-let jd = [
+const jd = [
     [ 255, 153, 51 ],
     [ 255, 193, 153 ],
     [ 229, 89, 247 ],
@@ -39,8 +39,8 @@ let jd = [
     [ 10, 130, 219 ]
   ]
 
-let presets = [jc, rgbVals, jd];
-let noteNamesPd = ['C','Csharp','D','Dsharp','E','F','Fsharp','G','Gsharp','A','Asharp','B']
+const presets = [jc, rgbVals, jd];
+const noteNamesPd = ['C','Csharp','D','Dsharp','E','F','Fsharp','G','Gsharp','A','Asharp','B']
 
 let output = '#N canvas 0 25 267 785 12;\n'
 
@@ -57,12 +57,6 @@ presets.forEach((item,index)=>{
         output += line + '\n'
         output += `#X msg ${300+(index*120)} ${108 + (i*30)} \\\; note${noteNamesPd[i]}-r color ${thisColour} 0 0;`
     })
-    
-    // console.log(output)
-    
-    
 })
-
-
 
 fs.writeFileSync('presets2.pd',output,'utf-8');

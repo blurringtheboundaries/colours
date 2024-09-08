@@ -1,9 +1,9 @@
-# colours
+# Colours
 Collaboration with Joel Dazé
 Code by Charles Matthews
 Based on Joel's pitch colour assembly
 
-## notes
+## Notes
 Not currently intended/licensed for use by others.  
 This is a work in progress, and is presented as "source available" rather than "open source" at this time. 
 
