@@ -206,7 +206,7 @@ function selectiveDecrement(){
   if(voiceArray.length == 0){
     return;
   }
-    //   let index = counter % voiceArray.length;
+    
   for(let index = 0; index < voiceArray.length; index++){
     console.log(index, voiceArray[index])
     voiceArray[index].intensity -= colours.decay_increment;

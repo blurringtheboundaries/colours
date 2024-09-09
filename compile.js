@@ -23,4 +23,4 @@ files.forEach(x=>{
 
 fs.copyFileSync(`${sourceFolder}/style.css`, `${buildFolder}/style.css`);
 
-console.log('\u001b[' + 41 + 'm' + 'done' + '\u001b[0m')
+console.log('\u001b[' + 41 + 'm' + 'done' + '\u001b[0m');

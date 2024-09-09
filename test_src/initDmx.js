@@ -1,5 +1,12 @@
 // import {colours, initGui} from './test.js';
 import {map, constrain} from '@matthewscharles/cm-toolbox';
+
+/**
+ * Get DMX index from voice number
+ * @param {number} number 
+ * @returns number - the index of the DMX light
+ */
+
 function getDmxIndex(number){
     let indices = Object.keys(colours.lights);
     return indices[number];
@@ -18,12 +25,15 @@ function updateScreenColours(){
 }
 
 /**
- * @name writeNoteColour
+ * @name initDMX
+ * initialise DMX
  */
 
 function initDMX(){
-    let {arduino, socket, voices, dmx} = window.colours;
+    let { arduino, socket, voices, dmx } = window.colours;
+    
     arduino.connect();
+    
     console.log('dmx', dmx, dmx.addresses);
     voices.assignAddresses(dmx.addresses);
     
@@ -36,33 +46,40 @@ function initDMX(){
         } else if(cc == 64){
             // sustain
             // this may interfere with other assignments and we need to check if it's common for pedals to be on/off or variable beyond Joel's keyboard...
+            
             colours.pedal = value;
             colours.decay_increment = Math.floor((value/-127)*6  + 8);
+            
             if(value == 127){
                 colours.decay_increment = 0.1;
             } else if(colours.hold && value == 0) {
                 voices.flush();
                 // colours.hold = false;
+                
                 updateScreenColours();
+                
                 let voiceArray = voices.voices.map(v=>v.pitch);
+                
                 voiceArray.forEach((v,i)=>{ 
                   colours.lights[Object.keys(colours.lights)[i]].write = [0,0,0];
                 });
+                
                 processAll();
             }
         } 
     }
     
-    socket.in.note = (e)=>{
+    socket.in.note = (e) => {
         let [channel, pitch, velocity] = e;
+        
         if(!velocity){
             if(colours.hold){
                 return;
             }
         } else {
-            // if(velocity < )
             velocity = map(velocity, colours.velocity_min, 127, 1, 127, true, true);
         }
+        
         let voiceNumber = voices.update(pitch, velocity, false);
         // console.log('dmx voice number', voiceNumber, getDmxIndex(voiceNumber))
         colours.intensities[getDmxIndex(voiceNumber)] = velocity;
@@ -72,6 +89,7 @@ function initDMX(){
 
         updateScreenColours();
     }
+    
     socket.listen();
     initGui();
 }

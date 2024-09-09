@@ -1,7 +1,14 @@
 // import {colours, processAll} from './test.js';
 
+/**
+ * 
+ * @param {number} note 
+ * @param {number} offset 
+ * @returns void
+ */
+
 function writeNoteColour(note = 0, offset = 0){
-    let {arduino, initFlag, lights} = window.colours;
+    let { arduino, initFlag, lights } = window.colours;
     let colour, vel;
     if(note == -1){
         
