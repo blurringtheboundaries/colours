@@ -17,9 +17,9 @@
         });
 
         // Set dimensions
-        const margin = { top: 20, right: 30, bottom: 30, left: 50 },
-            width = 800 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+        const margin = { top: 20, right: 30, bottom: 30, left: 50 };
+        const width = 800 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
 
         // Set up SVG
         const svg = d3.select("#timeline")
@@ -61,7 +61,7 @@
             .attr("height", yScale.bandwidth())
             .attr("fill", d => d.color.toLowerCase());
 
-        // Save SVG function
+        // Save SVG
         document.getElementById("saveButton").addEventListener("click", () => {
             const svgData = new XMLSerializer().serializeToString(document.querySelector("svg"));
             const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });

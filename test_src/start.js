@@ -14,7 +14,7 @@ function start(){
  
         document.querySelectorAll('.testBar').forEach((x,i)=>{
             x.style.backgroundColor = voiceArray[i].active ? noteColours.daze.hex[voiceArray[i].pitch%12] : 'black';
-        })
+        });
  
         socket.emitNote(0, pitch, velocity);
     };

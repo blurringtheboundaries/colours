@@ -1,3 +1,102 @@
+const noteColours = {
+    newton_12: {
+        names: [
+            "Red",
+            "OrangeRed",
+            "Orange",
+            "Gold",
+            "Yellow",
+            "YellowGreen",
+            "Green",
+            "LightSeaGreen",
+            "Blue",
+            "BlueViolet",
+            "Indigo",
+            "Purple"
+        ],
+        description: "Color wheel with added accidentals, based on Newton's system.",
+        author: "Charles Matthews"
+    },
+    daze: {
+        names: [
+            "Orange",
+            "Pale Orange",
+            "Magenta", // Mauve
+            "Greenish Grey",
+            "Sea green", // Aqua green E
+            "Yellow", // yellow lemon, more red than blue
+            "Rust", // Rust
+            "Red",
+            "Lilac", // Lilac
+            "Purple",
+            "Pale Green",
+            "Deep pool blue" // Deep pool blue / deep end blue
+        ],
+        namesHTML: [
+            "Orange",
+            "NavajoWhite",
+            "Magenta", // Mauve
+            "PaleGreen",
+            "Aqua", // Aqua green E
+            "Yellow", // yellow lemon, more red than blue
+            "Sienna", // Rust
+            "Red",
+            "Orchid", // Lilac
+            "Purple",
+            "LimeGreen",
+            "DeepSkyBlue" // Deep pool blue / deep end blue
+        ],
+        hex: [
+            '#ff9933',
+            '#ffcc99',
+            '#f85af8',
+            '#c3fcc8',
+            '#0cffff',
+            '#ffff03',
+            '#e0b5a2',
+            '#ff0101',
+            '#c37596',
+            '#cc66ff',
+            '#33cc33',
+            '#0783dc'
+        ],
+        led: [
+            '#FFA500',
+            '#FFE4C4',
+            '#FF00FF',
+            '#18FB18',
+            '#00FFFF',
+            '#FFFF00',
+            '#A03211',
+            '#FF0000',
+            '#DA70D6',
+            '#800080',
+            '#00CD00',
+            '#00BFFF'
+        ],
+        description: "Colour Pitch Assembly by Joel Daze.  Please reference this project if used.",
+        author: "Joel Daze"
+    },
+    purples: {
+        names: [
+            "Purple",
+            "Indigo",
+            "DarkViolet",
+            "BlueViolet",
+            "MediumSlateBlue",
+            "SlateBlue",
+            "MediumOrchid",
+            "Violet",
+            "Plum",
+            "Orchid",
+            "MediumPurple",
+            "DarkOrchid"
+        ],
+        description: "A set of purples",
+        author: "Charles Matthews"
+    }
+};
+
 /**
  * Official CSS colours with hex codes
  */
@@ -192,103 +291,5 @@ const COLOURS = {
     YellowGreen: "#9ACD32"
 };
 
-const noteColours = {
-    newton_12: {
-        names: [
-            "Red",
-            "OrangeRed",
-            "Orange",
-            "Gold",
-            "Yellow",
-            "YellowGreen",
-            "Green",
-            "LightSeaGreen",
-            "Blue",
-            "BlueViolet",
-            "Indigo",
-            "Purple"
-        ],
-        description: "Color wheel with added accidentals, based on Newton's system.",
-        author: "Charles Matthews"
-    },
-    daze: {
-        names: [
-            "Orange",
-            "Pale Orange",
-            "Magenta", // Mauve
-            "Greenish Grey",
-            "Sea green", // Aqua green E
-            "Yellow", // yellow lemon, more red than blue
-            "Rust", // Rust
-            "Red",
-            "Lilac", // Lilac
-            "Purple",
-            "Pale Green",
-            "Deep pool blue" // Deep pool blue / deep end blue
-        ],
-        namesHTML: [
-            "Orange",
-            "NavajoWhite",
-            "Magenta", // Mauve
-            "PaleGreen",
-            "Aqua", // Aqua green E
-            "Yellow", // yellow lemon, more red than blue
-            "Sienna", // Rust
-            "Red",
-            "Orchid", // Lilac
-            "Purple",
-            "LimeGreen",
-            "DeepSkyBlue" // Deep pool blue / deep end blue
-        ],
-        hex: [
-            '#ff9933',
-            '#ffcc99',
-            '#f85af8',
-            '#c3fcc8',
-            '#0cffff',
-            '#ffff03',
-            '#e0b5a2',
-            '#ff0101',
-            '#c37596',
-            '#cc66ff',
-            '#33cc33',
-            '#0783dc'
-        ],
-        led: [
-            '#FFA500',
-            '#FFE4C4',
-            '#FF00FF',
-            '#18FB18',
-            '#00FFFF',
-            '#FFFF00',
-            '#A03211',
-            '#FF0000',
-            '#DA70D6',
-            '#800080',
-            '#00CD00',
-            '#00BFFF'
-        ],
-        description: "Colour Pitch Assembly by Joel Daze.  Please reference this project if used.",
-        author: "Joel Daze"
-    },
-    purples: {
-        names: [
-            "Purple",
-            "Indigo",
-            "DarkViolet",
-            "BlueViolet",
-            "MediumSlateBlue",
-            "SlateBlue",
-            "MediumOrchid",
-            "Violet",
-            "Plum",
-            "Orchid",
-            "MediumPurple",
-            "DarkOrchid"
-        ],
-        description: "A set of purples",
-        author: "Charles Matthews"
-    }
-};
 
 export { noteColours, COLOURS };

@@ -1,8 +1,7 @@
-.axis path,
-        .axis line {
-            fill: none;
-            shape-rendering: crispEdges;
+.axis path, .axis line {
+        fill: none;
+        shape-rendering: crispEdges;
         }
-        .bar {
-/*             fill: steelblue; */
-        }
+.bar {
+        /* fill: steelblue; */
+}

@@ -7,11 +7,11 @@ colourList = jd.split(' ');
 output = [];
 
 for(let i=0;i<(12);i++){
-    output.push(colourList.slice((i*3), (i*3)+3))
+    output.push(colourList.slice((i*3), (i*3)+3));
 }
 
 output.forEach((x,i,arr)=>{
-    output[i] = x.map(num=>Math.floor(parseFloat(num)*255))
+    output[i] = x.map(num=>Math.floor(parseFloat(num)*255));
 });
 
 console.log(output);

@@ -41,11 +41,11 @@ let jd = [
     [ 193, 102, 255 ],
     [ 51, 204, 51 ],
     [ 10, 130, 219 ]
-  ]
+];
 
-let presets = [jc, rgbVals, jd]
+let presets = [jc, rgbVals, jd];
 
-let output = '#N canvas 0 25 267 785 12;\n'
+let output = '#N canvas 0 25 267 785 12;\n';
 
 presets.forEach((item,index)=>{
     var offset = index * 250;
@@ -59,12 +59,7 @@ presets.forEach((item,index)=>{
         let line = `#X obj ${x} ${y + offset} cnv 15 30 30 empty wheel${i} empty 20 12 0 14 ${thisColour} -262144 0;`;
         output += line + '\n'
     })
-    
     // console.log(output)
-    
-    
 })
-
-
 
 fs.writeFileSync('presets.pd',output,'utf-8');

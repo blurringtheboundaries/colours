@@ -9,13 +9,16 @@
 
 function writeNoteColour(note = 0, offset = 0){
     let { arduino, initFlag, lights } = window.colours;
+    
     let colour, vel;
     if(note == -1){
         
         if(colours.use_decay && colours.voices.voices[offset].intensity >= 0){
+            
             // let item = colours.voices.voices.find(x=>x.address == colours.dmx.addresses[offset]);
             let item = colours.voices.voices[offset];
             note = item.pitch_decay;
+            
             if(note == -1){
                 // this needs work
                 return;
@@ -27,6 +30,7 @@ function writeNoteColour(note = 0, offset = 0){
             // vel = colours.voices.voices[noteIndex].intensity;
             vel = item.intensity;
             colour = colour.map(x=>Math.floor(x*vel/127));
+            
         } else {
             colour = [0,0,0];
         }
