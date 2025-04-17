@@ -1,5 +1,5 @@
 /**
- * current assignments for our hardware
+ * current assignments for our hardware (Arduino with DMX shield)
  */
 
 const assignment = {
