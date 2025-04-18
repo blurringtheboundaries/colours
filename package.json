@@ -1,7 +1,7 @@
 {
   "name": "colours",
   "version": "1.0.1",
-  "description": "Colour project with Joel Dazé",
+  "description": "Performance setup for Joel Dazé's pitch colour assembly",
   "main": "colours.js",
   "type": "module",
   "scripts": {
