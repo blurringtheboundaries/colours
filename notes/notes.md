@@ -1,4 +1,6 @@
-# Coloured logs
+# Notes
+
+## Coloured logs
 
 ```JavaScript
 console.log( "\u001b[1;31m Red message" );
@@ -15,7 +17,10 @@ console.log( "\u001b[1;45m Purple background" );
 console.log( "\u001b[1;46m Cyan background" );
 ```
 
-# Equipment used for performance with Joel Dazé
+## Equipment used in performances
 
-https://www.parts-express.com/pedocs/manuals/244-516--talent-mp12-rgbw-dmx-led-stage-light-manual.pdf
-https://www.wildingsound.co.uk/manuals/LEDJ59C_7Q5WA_Manual.pdf
+- [https://www.parts-express.com/pedocs/manuals/244-516--talent-mp12-rgbw-dmx-led-stage-light-manual.pdf](https://www.parts-express.com/pedocs/manuals/244-516--talent-mp12-rgbw-dmx-led-stage-light-manual.pdf)
+
+- [LEDJ](https://www.wildingsound.co.uk/manuals/LEDJ59C_7Q5WA_Manual.pdf)
+
+- [Eliminator LP 12 Hex](https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/13258/Eliminator%20LP%2012%20HEX%20-%20User%20Manual.pdf)
