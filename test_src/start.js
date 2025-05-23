@@ -5,6 +5,26 @@
 function start(){
     let { midi, socket, voices } = window.colours;
     
+    
+    const params = new URLSearchParams(window.location.search);
+    const polyphony = parseInt(parseInt(params.get('voices'))) || 4; 
+
+    function createVoiceDivs(count) {
+        const container = document.querySelector('.testBars'); // assume exists
+        container.innerHTML = ''; // clear existing
+
+        for (let i = 0; i < count; i++) {
+            const div = document.createElement('div');
+            div.id = `voice${i}`;
+            div.className = 'testBar';
+            div.classList.add('voice');
+            div.innerHTML = `<span>${i}</span>`;
+            container.appendChild(div);
+        }
+    }
+
+    if(params.has('voices')) createVoiceDivs(polyphony);
+    
     colours.synth = new Tone.PolySynth(voices.polyphony, Tone.Synth).toMaster();
     
     let id = Math.random().toString(36).slice(2);
@@ -31,6 +51,10 @@ function start(){
     }
     
     midi.listen();
+    
+  
+    
+    
     
 }
 

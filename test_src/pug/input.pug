@@ -1,15 +1,24 @@
-// usual boilerplate
 doctype html
 html(lang="en")
     head
-        title Colour test
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js")
+        title MIDI Input
+        //- script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js")
+        //- script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.8.6/Tone.js")
         link(rel="stylesheet" href="style.css")
-        script(src="main.js" type="module")
+        script(src="./main.js" type="module")
         
-    body(onload="start()")
+    body
+        nav.status-bar#connection-status-bar(aria-label="Connection status")
+            div#server-status.status(role="status")
+                | Server:
+                strong Disconnected
+            div#midi-status.status(role="status")
+                | MIDI:
+                strong
+                    | Disconnected
+            //-- dynamic list of MIDI inputs
+            ul#midi-devices.device-list
         .testBars 
             .testBar 0
             .testBar 1
@@ -25,6 +34,6 @@ html(lang="en")
             .bar 
             .bar 
             .bar
-            .bar 
-            .bar 
-            .bar             
+            .bar
+            .bar
+            .bar
