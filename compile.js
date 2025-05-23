@@ -1,5 +1,6 @@
 import pug from 'pug';
 import fs from 'fs-extra';
+import path from 'path';
 import beautify from 'js-beautify';
 
 // const sourceFolder = 'keyboard/src';
@@ -11,14 +12,16 @@ const buildFolder = 'test';
 const files = ['input','midi','qr', 'keyboard', 'keyboard2'];
 
 files.forEach(x=>{
-    let html = pug.render(fs.readFileSync(`${sourceFolder}/${x}.pug`, "utf-8"), {
-        filename: `${sourceFolder}/${x}.pug`,
+    const srcPath = path.join(sourceFolder, `${x}.pug`);
+    const destPath = path.join(buildFolder, `${x}.html`);
+    
+    const html = pug.render(fs.readFileSync(srcPath, "utf-8"), {
+        filename: destPath,
         pretty: true
     });
-    // html = beautify(html);
+    // html = beautify.html(html);
     fs.writeFileSync(`${buildFolder}/${x}.html`, html, "utf-8");
     // fs.copyFileSync(`${sourceFolder}/script.js`, `${buildFolder}/script.js`); 
-   
 })
 
 fs.copyFileSync(`${sourceFolder}/style.css`, `${buildFolder}/style.css`);

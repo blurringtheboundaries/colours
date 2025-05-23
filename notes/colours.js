@@ -1,4 +1,4 @@
-// Some colours from JD's system
+// Some colours from JD's Pitch Colour Aseembly system
 
 /*
 Colour	            Note
