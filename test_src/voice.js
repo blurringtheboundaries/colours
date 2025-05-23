@@ -1,3 +1,6 @@
+import { updateNoteMeter } from './noteAria.js';
+
+
 /**
  * Voice class
  */
@@ -22,6 +25,7 @@ class Voice{
             velocity, 
             intensity:velocity
         })
+        updateNoteMeter(this.address, pitch, velocity);
     }
     
     off(){
@@ -32,6 +36,7 @@ class Voice{
             pitch:-1,
             velocity:0
         })
+        updateNoteMeter(this.address, -1, 0);
     }
 }
 
